@@ -1,5 +1,7 @@
 # Completion report
 
+The current page-by-page visual revision is documented in [visual-refinement-report.md](visual-refinement-report.md). The original implementation summary follows for architecture context.
+
 1. **Architecture:** Root `index.html`, nine physical secondary HTML pages under `pages/`, modular vanilla scripts, six CSS files plus local assets/licenses, documentation and repeatable tests. No React, Vite, frontend build or application server.
 2. **Visual system:** Original route-arc wordmark and favicon; graphite/off-white/transit orange; Barlow Condensed display, DM Sans UI and IBM Plex Mono metadata; distinct public and restrained dashboard compositions. Dark mode and logical RTL layouts persist.
 3. **Globe sources:** Pinned local Globe.GL 2.46.2, NASA Blue Marble day texture via three-globe’s static example distribution, GeoNames WGS84 city centers. Sources and usage terms in `asset-credits.md`.
@@ -12,3 +14,7 @@
 10. **Authentication:** Standalone forms validate, toggle passwords, retain only the Remember Me preference and disclose unavailable authentication, recovery and OAuth. No passwords stored, fake sign-in or account creation. Direct dashboard link remains available.
 11. **Responsive visual testing:** All ten pages tested at all twelve requested widths; full captures at 390/820/1440; every desktop/mobile page visually reviewed. Combined dark/RTL overflow matrix at 390/820/1440; mobile menu, dashboard sidebar, 320 px booking/tracking and globe fallback/reduced motion verified. See `qa-report.md` for evidence and actual limits.
 12. **Backend requirements:** Confirm brand and business details, tariffs/coverage, real carrier booking/tracking API, server validation/idempotency, authenticated customer ownership, OAuth/recovery, contact and notification delivery, and lawful billing/tax configuration. The delivered site remains an honestly labeled frontend demonstration until connected.
+
+## Current visual refinement
+
+The current globe replaces the initial photographic NASA texture with a pale translucent surface and pinned Natural Earth 5.1.2 land polygons. Five verified international cities and five conceptual international routes are available independently of domestic shipping eligibility. Source formatting, content cleanup, semantic theme colors, typography, form controls and all six dashboard sections were refined and checked in Chromium and WebKit. See `visual-refinement-report.md` for the complete current page-by-page completion report and remaining integration requirements.

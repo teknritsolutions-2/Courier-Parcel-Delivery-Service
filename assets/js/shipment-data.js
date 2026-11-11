@@ -1,20 +1,192 @@
-'use strict';
+"use strict";
 const sampleEvents = [
- {title:'Pickup requested',date:'2026-11-06T09:10:00+05:30',place:'Hyderabad'},
- {title:'Parcel collected',date:'2026-11-06T14:30:00+05:30',place:'Hyderabad'},
- {title:'Processing at sorting center',date:'2026-11-06T18:45:00+05:30',place:'Hyderabad'},
- {title:'In transit',date:'2026-11-07T08:15:00+05:30',place:'Hyderabad → Mumbai'}
+  {
+    title: "Pickup requested",
+    date: "2026-11-06T09:10:00+05:30",
+    place: "Hyderabad",
+  },
+  {
+    title: "Parcel collected",
+    date: "2026-11-06T14:30:00+05:30",
+    place: "Hyderabad",
+  },
+  {
+    title: "Processing at sorting center",
+    date: "2026-11-06T18:45:00+05:30",
+    place: "Hyderabad",
+  },
+  {
+    title: "In transit",
+    date: "2026-11-07T08:15:00+05:30",
+    place: "Hyderabad → Mumbai",
+  },
 ];
 Arcway.samples = [
-{id:'AW-100241',origin:'hyderabad',destination:'mumbai',service:'domestic',date:'2026-11-06',expected:'2026-11-09',status:'In transit',weight:2,amount:191,invoice:'DRAFT-00241',events:sampleEvents},
-{id:'AW-100242',origin:'mumbai',destination:'delhi',service:'express',date:'2026-11-02',expected:'2026-11-05',status:'Delivered',weight:1,amount:275,invoice:'DRAFT-00242',events:[{title:'Pickup requested',date:'2026-11-02T10:00:00+05:30',place:'Mumbai'},{title:'Parcel collected',date:'2026-11-02T15:00:00+05:30',place:'Mumbai'},{title:'In transit',date:'2026-11-03T10:00:00+05:30',place:'Mumbai → Delhi'},{title:'Out for delivery',date:'2026-11-05T09:00:00+05:30',place:'Delhi'},{title:'Delivered',date:'2026-11-05T16:20:00+05:30',place:'Delhi'}]},
-{id:'AW-100243',origin:'bengaluru',destination:'bengaluru',service:'local',date:'2026-11-08',expected:null,status:'Pickup requested',weight:.5,amount:55,invoice:null,events:[{title:'Pickup requested',date:'2026-11-08T11:00:00+05:30',place:'Bengaluru'}]},
-{id:'AW-100244',origin:'chennai',destination:'kolkata',service:'domestic',date:'2026-11-04',expected:'2026-11-10',status:'Out for delivery',weight:1.5,amount:194,invoice:'DRAFT-00244',events:[{title:'Pickup requested',date:'2026-11-04T09:00:00+05:30',place:'Chennai'},{title:'Parcel collected',date:'2026-11-04T14:00:00+05:30',place:'Chennai'},{title:'Processing at sorting center',date:'2026-11-05T10:00:00+05:30',place:'Chennai'},{title:'In transit',date:'2026-11-06T08:30:00+05:30',place:'Chennai → Kolkata'},{title:'Out for delivery',date:'2026-11-10T09:00:00+05:30',place:'Kolkata'}]}
+  {
+    id: "AW-100241",
+    origin: "hyderabad",
+    destination: "mumbai",
+    service: "domestic",
+    date: "2026-11-06",
+    expected: "2026-11-09",
+    status: "In transit",
+    weight: 2,
+    amount: 191,
+    invoice: "DRAFT-00241",
+    events: sampleEvents,
+  },
+  {
+    id: "AW-100242",
+    origin: "mumbai",
+    destination: "delhi",
+    service: "express",
+    date: "2026-11-02",
+    expected: "2026-11-05",
+    status: "Delivered",
+    weight: 1,
+    amount: 275,
+    invoice: "DRAFT-00242",
+    events: [
+      {
+        title: "Pickup requested",
+        date: "2026-11-02T10:00:00+05:30",
+        place: "Mumbai",
+      },
+      {
+        title: "Parcel collected",
+        date: "2026-11-02T15:00:00+05:30",
+        place: "Mumbai",
+      },
+      {
+        title: "In transit",
+        date: "2026-11-03T10:00:00+05:30",
+        place: "Mumbai → Delhi",
+      },
+      {
+        title: "Out for delivery",
+        date: "2026-11-05T09:00:00+05:30",
+        place: "Delhi",
+      },
+      { title: "Delivered", date: "2026-11-05T16:20:00+05:30", place: "Delhi" },
+    ],
+  },
+  {
+    id: "AW-100243",
+    origin: "bengaluru",
+    destination: "bengaluru",
+    service: "local",
+    date: "2026-11-08",
+    expected: null,
+    status: "Pickup requested",
+    weight: 0.5,
+    amount: 55,
+    invoice: null,
+    events: [
+      {
+        title: "Pickup requested",
+        date: "2026-11-08T11:00:00+05:30",
+        place: "Bengaluru",
+      },
+    ],
+  },
+  {
+    id: "AW-100244",
+    origin: "chennai",
+    destination: "kolkata",
+    service: "domestic",
+    date: "2026-11-04",
+    expected: "2026-11-10",
+    status: "Out for delivery",
+    weight: 1.5,
+    amount: 194,
+    invoice: "DRAFT-00244",
+    events: [
+      {
+        title: "Pickup requested",
+        date: "2026-11-04T09:00:00+05:30",
+        place: "Chennai",
+      },
+      {
+        title: "Parcel collected",
+        date: "2026-11-04T14:00:00+05:30",
+        place: "Chennai",
+      },
+      {
+        title: "Processing at sorting center",
+        date: "2026-11-05T10:00:00+05:30",
+        place: "Chennai",
+      },
+      {
+        title: "In transit",
+        date: "2026-11-06T08:30:00+05:30",
+        place: "Chennai → Kolkata",
+      },
+      {
+        title: "Out for delivery",
+        date: "2026-11-10T09:00:00+05:30",
+        place: "Kolkata",
+      },
+    ],
+  },
 ];
-Arcway.validShipment = s => s && typeof s.id==='string' && /^AWL-[A-F0-9]{12}$/.test(s.id) && Arcway.city(s.origin) && Arcway.city(s.destination) && Arcway.services[s.service] && s.status==='Pickup requested' && Number.isFinite(s.amount) && Array.isArray(s.events) && s.events.length>0 && s.events.every(e=>e && typeof e.title==='string' && typeof e.place==='string' && Number.isFinite(Date.parse(e.date))) && /^\d{4}-\d{2}-\d{2}$/.test(s.date);
-Arcway.shipments = () => {const stored=Arcway.storage.get('shipments.v1',[]);const local=Array.isArray(stored)?stored.filter(Arcway.validShipment):[];return [...Arcway.samples,...local.filter((s,i,a)=>a.findIndex(x=>x.id===s.id)===i)];};
-Arcway.findShipment = id => Arcway.shipments().find(s=>s.id===String(id).trim().toUpperCase());
-Arcway.saveShipment = record => {const existing=Arcway.shipments().filter(s=>s.id.startsWith('AWL-'));if(existing.some(s=>s.id===record.id))return true;if(!Arcway.storage.set('shipments.v1',[...existing,record]))throw Error('Browser storage is unavailable or full. The request has not been saved.');window.dispatchEvent(new Event('arcway:shipments'));return true;};
-Arcway.stats = () => {const list=Arcway.shipments();return {total:list.length,transit:list.filter(s=>['In transit','Out for delivery','Processing at sorting center','Parcel collected'].includes(s.status)).length,delivered:list.filter(s=>s.status==='Delivered').length,pending:list.filter(s=>s.status==='Pickup requested').length};};
-Arcway.timelineHTML = shipment => `<ol class="timeline">${shipment.events.map(e=>`<li><strong>${Arcway.escape(e.title)}</strong><span>${Arcway.escape(e.place)} · ${Arcway.date(e.date)} · ${new Intl.DateTimeFormat('en-IN',{hour:'2-digit',minute:'2-digit',timeZone:'Asia/Kolkata'}).format(new Date(e.date))} IST</span></li>`).join('')}</ol>`;
-Arcway.shipmentHTML = s => `<div class="shipment-head"><div><span class="eyebrow">Local demonstration record</span><h2 class="mono">${Arcway.escape(s.id)}</h2></div><span class="badge">${Arcway.escape(s.status)}</span></div><div class="route-display"><div><strong>${Arcway.city(s.origin).name}</strong><small>ORIGIN · ${Arcway.city(s.origin).lat.toFixed(2)}° N</small></div><div class="route-connector" aria-hidden="true"></div><div><strong>${Arcway.city(s.destination).name}</strong><small>DESTINATION · ${Arcway.city(s.destination).lat.toFixed(2)}° N</small></div></div><dl class="detail-grid"><div><dt>Service</dt><dd>${Arcway.services[s.service].name}</dd></div><div><dt>Pickup date</dt><dd>${Arcway.date(s.date)}</dd></div><div><dt>Sample delivery estimate</dt><dd>${Arcway.date(s.expected)}</dd></div><div><dt>Last recorded update</dt><dd>${Arcway.date(s.events.at(-1).date)}</dd></div></dl><div class="notice notice-neutral">${s.id.startsWith('AWL-')?'This pickup request is saved only in this browser. A carrier has not received it.':'Static sample history. Dates and statuses illustrate the interface and do not update automatically.'}</div><h3 style="margin-top:30px;font-size:19px">Shipment journey</h3>${Arcway.timelineHTML(s)}`;
+Arcway.validShipment = (s) =>
+  s &&
+  typeof s.id === "string" &&
+  /^AWL-[A-F0-9]{12}$/.test(s.id) &&
+  Arcway.city(s.origin) &&
+  Arcway.city(s.destination) &&
+  Arcway.services[s.service] &&
+  s.status === "Pickup requested" &&
+  Number.isFinite(s.amount) &&
+  Array.isArray(s.events) &&
+  s.events.length > 0 &&
+  s.events.every(
+    (e) =>
+      e &&
+      typeof e.title === "string" &&
+      typeof e.place === "string" &&
+      Number.isFinite(Date.parse(e.date)),
+  ) &&
+  /^\d{4}-\d{2}-\d{2}$/.test(s.date);
+Arcway.shipments = () => {
+  const stored = Arcway.storage.get("shipments.v1", []);
+  const local = Array.isArray(stored)
+    ? stored.filter(Arcway.validShipment)
+    : [];
+  return [
+    ...Arcway.samples,
+    ...local.filter((s, i, a) => a.findIndex((x) => x.id === s.id) === i),
+  ];
+};
+Arcway.findShipment = (id) =>
+  Arcway.shipments().find((s) => s.id === String(id).trim().toUpperCase());
+Arcway.saveShipment = (record) => {
+  const existing = Arcway.shipments().filter((s) => s.id.startsWith("AWL-"));
+  if (existing.some((s) => s.id === record.id)) return true;
+  if (!Arcway.storage.set("shipments.v1", [...existing, record]))
+    throw Error(
+      "Browser storage is unavailable or full. The request has not been saved.",
+    );
+  window.dispatchEvent(new Event("arcway:shipments"));
+  return true;
+};
+Arcway.stats = () => {
+  const list = Arcway.shipments();
+  return {
+    total: list.length,
+    transit: list.filter((s) =>
+      [
+        "In transit",
+        "Out for delivery",
+        "Processing at sorting center",
+        "Parcel collected",
+      ].includes(s.status),
+    ).length,
+    delivered: list.filter((s) => s.status === "Delivered").length,
+    pending: list.filter((s) => s.status === "Pickup requested").length,
+  };
+};
+Arcway.timelineHTML = (shipment) =>
+  `<ol class="timeline">${shipment.events.map((e) => `<li><strong>${Arcway.escape(e.title)}</strong><span>${Arcway.escape(e.place)} · ${Arcway.date(e.date)} · ${new Intl.DateTimeFormat("en-IN", { hour: "2-digit", minute: "2-digit", timeZone: "Asia/Kolkata" }).format(new Date(e.date))} IST</span></li>`).join("")}</ol>`;
+Arcway.shipmentHTML = (s) =>
+  `<div class="shipment-head"><div><span class="eyebrow">Shipment details</span><h2 class="mono">${Arcway.escape(s.id)}</h2></div><span class="badge">${Arcway.escape(s.status)}</span></div><div class="route-display"><div><strong>${Arcway.city(s.origin).name}</strong><small>ORIGIN · ${Arcway.city(s.origin).lat.toFixed(2)}° N</small></div><div class="route-connector" aria-hidden="true"></div><div><strong>${Arcway.city(s.destination).name}</strong><small>DESTINATION · ${Arcway.city(s.destination).lat.toFixed(2)}° N</small></div></div><dl class="detail-grid"><div><dt>Service</dt><dd>${Arcway.services[s.service].name}</dd></div><div><dt>Pickup date</dt><dd>${Arcway.date(s.date)}</dd></div><div><dt>Estimated delivery</dt><dd>${Arcway.date(s.expected)}</dd></div><div><dt>Last recorded update</dt><dd>${Arcway.date(s.events.at(-1).date)}</dd></div></dl><div class="notice notice-neutral">${s.id.startsWith("AWL-") ? "Pickup request saved in this browser. It has not been sent to a courier." : "Example shipment history — recorded events, not live carrier updates."}</div><h3 style="margin-top:30px;font-size:19px">Shipment journey</h3>${Arcway.timelineHTML(s)}`;

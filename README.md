@@ -24,7 +24,8 @@ Then open `http://127.0.0.1:4173/`. Use HTTP rather than double-clicking HTML fi
 - `city-data.js`, `service-data.js`, `shipment-data.js`: geographic references, pricing and shared records.
 - `rate-calculator.js`, `tracking.js`, `pickup-booking.js`, `invoices.js`, `dashboard.js`, `auth.js`: focused interaction layers.
 - `main.js`, `utils.js`: shared navigation, theme/direction, formatting and storage.
-- `globe.js`: lazy-loaded geographic visualization, lifecycle and fallback.
+- `globe.js`: lazy-loaded pale translucent Earth, domestic/international networks, spherical route framing, lifecycle and accurate static fallback.
+- `assets/data/ne_110m_land.geojson`: locally pinned Natural Earth 5.1.2 land geometry. `assets/css/globe.css` owns explorer styling. International centers are geographic references only; they do not expand the nine-city domestic estimator.
 - `assets/vendor/`: pinned Globe.GL 2.46.2 and jsPDF 3.0.3 with licenses.
 - `assets/fonts/`: local Barlow Condensed, DM Sans and IBM Plex Mono; OFL licenses included.
 - `documentation/`: reference review, source credits, QA evidence and completion report.
@@ -81,7 +82,7 @@ BROWSER_PATH=/absolute/path/to/chromium \
 node tests/browser-qa.cjs
 ```
 
-Start the local preview first. `BASE_URL` overrides the preview URL; `LAYOUT_ONLY=1` runs layout, mode, mobile navigation and fallback checks. Browser captures and downloaded test PDFs go to `/tmp/arcway-qa/`. See `documentation/qa-report.md` for actual checks and limits.
+Start the local preview first. `BASE_URL` overrides the preview URL; `LAYOUT_ONLY=1` runs layout, mode, mobile navigation and fallback checks. Browser captures and downloaded test PDFs go to `/tmp/arcway-qa/`. See `documentation/visual-refinement-report.md` for the latest page-by-page audit and `documentation/qa-report.md` for checks and limits. The refinement was tested in both Chromium and WebKit, including international routes and all six dashboard sections.
 
 ## Connecting real services later
 

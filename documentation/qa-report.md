@@ -1,5 +1,7 @@
 # ARCWAY QA report
 
+**Current visual revision:** see [visual-refinement-report.md](visual-refinement-report.md). The initial implementation audit below is retained as a baseline.
+
 Tested 11 November 2026 on the local HTTP site using installed Brave (Chromium), Playwright, and software-rendered WebGL. No real logistics, identity, messaging or billing service was used.
 
 ## Completed checks
@@ -51,3 +53,7 @@ The first test runs exposed ambiguous test selectors and timing assumptions; tho
 Browser viewport emulation is not real-device certification. No physical mobile GPU, low-bandwidth performance benchmark, assistive-technology audit or cross-browser Safari/Firefox pass was performed. WebGL QA used software rendering; real hardware performance varies. Shipping data is browser-local and tied to the origin. The public grid diagram is a coordinate diagram, not an administrative map.
 
 GitHub Pages compatibility was checked through static relative paths and local HTTP serving; no GitHub repository deployment was performed. Sites publication status is reported separately by the deployment tool. Real carrier integration, approved rates/coverage/contact details, authentication/OAuth, request delivery, secure multi-user data, notifications and official billing remain backend work.
+
+## Visual refinement — current revision
+
+The photographic-globe visual description above is historical. The current implementation uses Natural Earth land polygons and a pale translucent material, with separate domestic/international exploration. See `visual-refinement-report.md` for the full page-by-page corrections and current test evidence. Both Chromium and WebKit functional and responsive passes are now complete; the initial report's single-engine limitation no longer applies to this refinement. Real-device/GPU and backend integration limitations remain.

@@ -1,0 +1,19 @@
+{
+  "engine": "Chromium",
+  "themes": [
+    "light",
+    "dark"
+  ],
+  "pages": 10,
+  "includes": [
+    "initial pages",
+    "calculated rate summary",
+    "tracking record"
+  ],
+  "excludes": [
+    "logotypes",
+    "image overlays (visually reviewed)",
+    "canvas/SVG geography"
+  ],
+  "failures": []
+}

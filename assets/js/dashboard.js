@@ -1,25 +1,290 @@
-'use strict';
-(()=>{
- if(!document.querySelector('.dash-layout'))return;const esc=Arcway.escape;
- const tabs=['overview','book','track','history','invoices','profile'];
- const titles={overview:['Your shipping, at a glance.','A clear view of your local demonstration workspace.'],book:['Plan your next pickup.','Add the details. Review the request. Save it locally.'],track:['Every parcel. One place.','Find the same recorded history shown on the public tracking page.'],history:['Your shipment history.','Browse, sort and filter your sample and locally saved requests.'],invoices:['Clear records. Ready to download.','Illustrative draft documents linked to sample shipments.'],profile:['Make this workspace yours.','Manage browser-local preferences and customer information.']};
- const sidebar=document.querySelector('.dash-sidebar'),backdrop=document.querySelector('.sidebar-backdrop'),menu=document.querySelector('.dash-menu'),main=document.querySelector('.dash-main-wrap');const media=matchMedia('(max-width:1024px)');
- function closeSidebar(focus=false){sidebar.classList.remove('is-open');backdrop.classList.remove('is-open');menu.setAttribute('aria-expanded','false');sidebar.inert=media.matches;main.inert=false;document.body.style.overflow='';if(focus)menu.focus();}
- menu.addEventListener('click',()=>{sidebar.inert=false;sidebar.classList.add('is-open');backdrop.classList.add('is-open');menu.setAttribute('aria-expanded','true');main.inert=true;document.body.style.overflow='hidden';sidebar.querySelector('a').focus();});
- document.querySelector('.dash-sidebar-close').addEventListener('click',()=>closeSidebar(true));backdrop.addEventListener('click',()=>closeSidebar(true));media.addEventListener('change',()=>closeSidebar());closeSidebar();
- document.addEventListener('keydown',e=>{if(sidebar.classList.contains('is-open')){if(e.key==='Escape'){closeSidebar(true);return;}if(e.key==='Tab'){const elements=[...sidebar.querySelectorAll('a,button')].filter(el=>el.offsetParent!==null);const first=elements[0],last=elements.at(-1);if(e.shiftKey&&document.activeElement===first){last.focus();e.preventDefault();}else if(!e.shiftKey&&document.activeElement===last){first.focus();e.preventDefault();}}}});
- function showTab(){let tab=location.hash.slice(1)||'overview';if(!tabs.includes(tab))tab='overview';document.querySelectorAll('[data-dash-tab]').forEach(s=>s.hidden=s.dataset.dashTab!==tab);document.querySelectorAll('.dash-nav a').forEach(a=>{if(a.hash==='#'+tab)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});document.querySelector('#dash-title').textContent=titles[tab][0];document.querySelector('#dash-subtitle').textContent=titles[tab][1];document.querySelector('#topbar-section').textContent={overview:'Overview',book:'Book a Pickup',track:'Track Parcels',history:'Shipment History',invoices:'Invoices',profile:'Profile & Settings'}[tab];document.querySelector('[data-overview-book]').hidden=tab!=='overview';closeSidebar();}
- document.querySelectorAll('.dash-nav a').forEach(a=>a.addEventListener('click',()=>{if(media.matches)closeSidebar();}));window.addEventListener('hashchange',()=>{showTab();document.querySelector('#dash-title').focus({preventScroll:true});window.scrollTo(0,0);});showTab();
- function row(s,kind='history'){const action=`<button class="table-action" data-shipment-details="${s.id}">Details ↗</button>`;return `<tr><td data-label="Tracking ID"><span class="mono">${s.id}</span></td><td data-label="Route"><div class="table-route">${Arcway.city(s.origin).name}<span>→ ${Arcway.city(s.destination).name}</span></div></td>${kind!=='recent'?`<td data-label="Service">${Arcway.services[s.service].name}</td>`:''}<td data-label="Date">${Arcway.date(s.date)}</td><td data-label="Status"><span class="badge ${s.status==='Delivered'?'badge-neutral':''}">${s.status}</span></td>${kind==='history'?`<td data-label="Sample amount">${Arcway.money(s.amount)}</td>`:''}<td data-label="Action">${action}</td></tr>`;}
- function bindDetails(root){root.querySelectorAll('[data-shipment-details]').forEach(b=>b.addEventListener('click',()=>{const s=Arcway.findShipment(b.dataset.shipmentDetails);if(!s)return;const dialog=document.querySelector('#shipment-dialog');dialog.querySelector('[data-shipment-content]').innerHTML=Arcway.shipmentHTML(s)+`<a class="text-link" href="tracking.html?id=${s.id}">Open tracking page ${Arcway.icon('arrow','directional')}</a>`;dialog.showModal();}));}
- function renderOverview(){const stats=Arcway.stats();Object.entries(stats).forEach(([k,v])=>document.querySelector(`[data-stat="${k}"]`).textContent=v);const shipments=Arcway.shipments();const next=shipments.filter(s=>s.status!=='Delivered'&&s.expected&&s.expected>=Arcway.today()).sort((a,b)=>a.expected.localeCompare(b.expected))[0];const nextEl=document.querySelector('#next-delivery');nextEl.innerHTML=next?`<span class="badge">Sample delivery estimate</span><h3>${Arcway.city(next.origin).name} → ${Arcway.city(next.destination).name}</h3><p>${Arcway.date(next.expected)}</p><a class="text-link" href="tracking.html?id=${next.id}">${next.id} ${Arcway.icon('arrow')}</a>`:`<span class="badge badge-neutral">No upcoming date recorded</span><h3>The next step<br>starts with a pickup.</h3><p style="font-size:13px">Sample delivery dates are historical. New local requests are unscheduled.</p><a class="text-link" href="#book">Plan a pickup ${Arcway.icon('arrow')}</a>`;
- const events=shipments.flatMap(s=>s.events.map(e=>({...e,id:s.id}))).sort((a,b)=>new Date(b.date)-new Date(a.date)).slice(0,3);document.querySelector('#recent-activity').innerHTML=events.map(e=>`<li><span class="activity-dot"></span><div><strong>${esc(e.title)}</strong><small>${e.id} · ${Arcway.date(e.date)}</small></div></li>`).join('');const recent=document.querySelector('#recent-shipments');recent.innerHTML=[...shipments].sort((a,b)=>new Date(b.created||b.date)-new Date(a.created||a.date)).slice(0,4).map(s=>row(s,'recent')).join('');bindDetails(recent);}
- function renderShipments(kind){const form=document.querySelector('#'+kind+'-filters'),query=form.elements.search.value.trim().toUpperCase(),status=form.elements.status.value,sort=form.elements.sort?.value||'newest';const list=Arcway.shipments().filter(s=>s.id.includes(query)&&(!status||s.status===status));list.sort((a,b)=>sort==='oldest'?new Date(a.created||a.date)-new Date(b.created||b.date):sort==='amount'?b.amount-a.amount:new Date(b.created||b.date)-new Date(a.created||a.date));document.querySelector('#'+kind+'-count').textContent=list.length+' '+(list.length===1?'shipment':'shipments');const tbody=document.querySelector('#'+kind+'-rows');tbody.innerHTML=list.map(s=>row(s,kind==='history'?'history':'track')).join('');document.querySelector('#'+kind+'-empty').hidden=list.length>0;document.querySelector('#'+kind+'-table').hidden=!list.length;bindDetails(tbody);}
- ['track','history'].forEach(kind=>{const f=document.querySelector('#'+kind+'-filters');f.addEventListener('input',()=>renderShipments(kind));f.addEventListener('submit',e=>e.preventDefault());});
- function renderInvoices(){const list=Arcway.shipments().filter(s=>s.invoice);document.querySelector('#invoice-rows').innerHTML=list.map(s=>`<tr><td data-label="Invoice reference"><span class="mono">${s.invoice}</span><br><small class="muted" style="font-size:10px">Draft / Illustrative</small></td><td data-label="Shipment"><span class="mono">${s.id}</span></td><td data-label="Date">${Arcway.date(s.date)}</td><td data-label="Total (INR)">${Arcway.money(s.amount)}</td><td data-label="Actions"><div class="table-actions"><button class="table-action" data-view-invoice="${s.id}">View</button><button class="table-action" data-download-invoice="${s.id}">PDF ↓</button></div></td></tr>`).join('');document.querySelectorAll('[data-view-invoice]').forEach(b=>b.addEventListener('click',()=>Arcway.viewInvoice(b.dataset.viewInvoice)));document.querySelectorAll('[data-download-invoice]').forEach(b=>b.addEventListener('click',()=>Arcway.downloadInvoice(b.dataset.downloadInvoice,b)));}
- function refresh(){renderOverview();renderShipments('track');renderShipments('history');renderInvoices();}window.addEventListener('arcway:shipments',refresh);refresh();
- const profile=document.querySelector('#profile-form');let stored=Arcway.storage.get('profile',{});if(!stored||typeof stored!=='object'||Array.isArray(stored))stored={};['name','email','phone','address'].forEach(k=>{profile.elements[k].value=typeof stored[k]==='string'?stored[k]:'';});profile.elements.shipmentNotifications.checked=stored.shipmentNotifications===true;profile.elements.emailNotifications.checked=stored.emailNotifications===true;
- function updateName(){const name=profile.elements.name.value.trim();document.querySelector('#profile-avatar').textContent=name?name.split(/\s+/).slice(0,2).map(s=>s[0]).join('').toUpperCase():'AW';}updateName();
- profile.addEventListener('submit',e=>{e.preventDefault();if(!profile.reportValidity())return;const data=Object.fromEntries(new FormData(profile));data.shipmentNotifications=profile.elements.shipmentNotifications.checked;data.emailNotifications=profile.elements.emailNotifications.checked;if(Arcway.storage.set('profile',data)){updateName();Arcway.toast('Profile and preferences saved in this browser. No notifications are sent.');}else Arcway.toast('Browser storage is unavailable. Your profile has not been saved.');});
- const reset=document.querySelector('#reset-dialog');document.querySelector('[data-reset-data]').addEventListener('click',()=>reset.showModal());document.querySelector('[data-confirm-reset]').addEventListener('click',()=>{try{['arcway.shipments.v1','arcway.profile','arcway.remember'].forEach(k=>localStorage.removeItem(k));location.href='dashboard.html#overview';location.reload();}catch(_){Arcway.toast('Local browser data could not be reset.');}});
+"use strict";
+(() => {
+  if (!document.querySelector(".dash-layout")) return;
+  const esc = Arcway.escape;
+  const tabs = ["overview", "book", "track", "history", "invoices", "profile"];
+  const titles = {
+    overview: [
+      "Your shipping, at a glance.",
+      "Plan your next pickup and keep every recorded shipment in view.",
+    ],
+    book: [
+      "Plan your next pickup.",
+      "Add the details. Review the request. Save it locally.",
+    ],
+    track: [
+      "Every parcel. One place.",
+      "Find the same recorded history shown on the public tracking page.",
+    ],
+    history: [
+      "Your shipment history.",
+      "Browse, sort and filter your shipment records.",
+    ],
+    invoices: [
+      "Clear records. Ready to download.",
+      "View your draft records and download a clear PDF copy.",
+    ],
+    profile: [
+      "Make this workspace yours.",
+      "Manage your information, appearance and notification preferences.",
+    ],
+  };
+  const sidebar = document.querySelector(".dash-sidebar"),
+    backdrop = document.querySelector(".sidebar-backdrop"),
+    menu = document.querySelector(".dash-menu"),
+    main = document.querySelector(".dash-main-wrap");
+  const media = matchMedia("(max-width:1024px)");
+  function closeSidebar(focus = false) {
+    sidebar.classList.remove("is-open");
+    backdrop.classList.remove("is-open");
+    menu.setAttribute("aria-expanded", "false");
+    sidebar.inert = media.matches;
+    main.inert = false;
+    document.body.style.overflow = "";
+    if (focus) menu.focus();
+  }
+  menu.addEventListener("click", () => {
+    sidebar.inert = false;
+    sidebar.classList.add("is-open");
+    backdrop.classList.add("is-open");
+    menu.setAttribute("aria-expanded", "true");
+    main.inert = true;
+    document.body.style.overflow = "hidden";
+    sidebar.querySelector("a").focus();
+  });
+  document
+    .querySelector(".dash-sidebar-close")
+    .addEventListener("click", () => closeSidebar(true));
+  backdrop.addEventListener("click", () => closeSidebar(true));
+  media.addEventListener("change", () => closeSidebar());
+  closeSidebar();
+  document.addEventListener("keydown", (e) => {
+    if (sidebar.classList.contains("is-open")) {
+      if (e.key === "Escape") {
+        closeSidebar(true);
+        return;
+      }
+      if (e.key === "Tab") {
+        const elements = [...sidebar.querySelectorAll("a,button")].filter(
+          (el) => el.offsetParent !== null,
+        );
+        const first = elements[0],
+          last = elements.at(-1);
+        if (e.shiftKey && document.activeElement === first) {
+          last.focus();
+          e.preventDefault();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          first.focus();
+          e.preventDefault();
+        }
+      }
+    }
+  });
+  function showTab() {
+    let tab = location.hash.slice(1) || "overview";
+    if (!tabs.includes(tab)) tab = "overview";
+    document
+      .querySelectorAll("[data-dash-tab]")
+      .forEach((s) => (s.hidden = s.dataset.dashTab !== tab));
+    document.querySelectorAll(".dash-nav a").forEach((a) => {
+      if (a.hash === "#" + tab) a.setAttribute("aria-current", "page");
+      else a.removeAttribute("aria-current");
+    });
+    document.querySelector("#dash-title").textContent = titles[tab][0];
+    document.querySelector("#dash-subtitle").textContent = titles[tab][1];
+    document.querySelector("#topbar-section").textContent = {
+      overview: "Overview",
+      book: "Book a Pickup",
+      track: "Track Parcels",
+      history: "Shipment History",
+      invoices: "Invoices",
+      profile: "Profile & Settings",
+    }[tab];
+    document.querySelector("[data-overview-book]").hidden = tab !== "overview";
+    closeSidebar();
+  }
+  document.querySelectorAll(".dash-nav a").forEach((a) =>
+    a.addEventListener("click", () => {
+      if (media.matches) closeSidebar();
+    }),
+  );
+  window.addEventListener("hashchange", () => {
+    showTab();
+    document.querySelector("#dash-title").focus({ preventScroll: true });
+    window.scrollTo(0, 0);
+  });
+  showTab();
+  function row(s, kind = "history") {
+    const action = `<button class="table-action" data-shipment-details="${s.id}">Details ↗</button>`;
+    return `<tr><td data-label="Tracking ID"><span class="mono">${s.id}</span></td><td data-label="Route"><div class="table-route">${Arcway.city(s.origin).name}<span>→ ${Arcway.city(s.destination).name}</span></div></td>${kind !== "recent" ? `<td data-label="Service">${Arcway.services[s.service].name}</td>` : ""}<td data-label="Date">${Arcway.date(s.date)}</td><td data-label="Status"><span class="badge ${s.status === "Delivered" ? "badge-neutral" : ""}">${s.status}</span></td>${kind === "history" ? `<td data-label="Amount">${Arcway.money(s.amount)}</td>` : ""}<td data-label="Action">${action}</td></tr>`;
+  }
+  function bindDetails(root) {
+    root.querySelectorAll("[data-shipment-details]").forEach((b) =>
+      b.addEventListener("click", () => {
+        const s = Arcway.findShipment(b.dataset.shipmentDetails);
+        if (!s) return;
+        const dialog = document.querySelector("#shipment-dialog");
+        dialog.querySelector("[data-shipment-content]").innerHTML =
+          Arcway.shipmentHTML(s) +
+          `<a class="text-link" href="tracking.html?id=${s.id}">Open tracking page ${Arcway.icon("arrow", "directional")}</a>`;
+        dialog.showModal();
+      }),
+    );
+  }
+  function renderOverview() {
+    const stats = Arcway.stats();
+    Object.entries(stats).forEach(
+      ([k, v]) =>
+        (document.querySelector(`[data-stat="${k}"]`).textContent = v),
+    );
+    const shipments = Arcway.shipments();
+    const next = shipments
+      .filter(
+        (s) =>
+          s.status !== "Delivered" &&
+          s.expected &&
+          s.expected >= Arcway.today(),
+      )
+      .sort((a, b) => a.expected.localeCompare(b.expected))[0];
+    const nextEl = document.querySelector("#next-delivery");
+    nextEl.innerHTML = next
+      ? `<span class="badge">Estimated delivery</span><h3>${Arcway.city(next.origin).name} → ${Arcway.city(next.destination).name}</h3><p>${Arcway.date(next.expected)}</p><a class="text-link" href="tracking.html?id=${next.id}">${next.id} ${Arcway.icon("arrow")}</a>`
+      : `<span class="badge badge-neutral">No upcoming date recorded</span><h3>The next step<br>starts with a pickup.</h3><p style="font-size:14px">No future delivery date is recorded. Plan your next pickup to get started.</p><a class="text-link" href="#book">Plan a pickup ${Arcway.icon("arrow")}</a>`;
+    const events = shipments
+      .flatMap((s) => s.events.map((e) => ({ ...e, id: s.id })))
+      .sort((a, b) => new Date(b.date) - new Date(a.date))
+      .slice(0, 3);
+    document.querySelector("#recent-activity").innerHTML = events
+      .map(
+        (e) =>
+          `<li><span class="activity-dot"></span><div><strong>${esc(e.title)}</strong><small>${e.id} · ${Arcway.date(e.date)}</small></div></li>`,
+      )
+      .join("");
+    const recent = document.querySelector("#recent-shipments");
+    recent.innerHTML = [...shipments]
+      .sort(
+        (a, b) => new Date(b.created || b.date) - new Date(a.created || a.date),
+      )
+      .slice(0, 4)
+      .map((s) => row(s, "recent"))
+      .join("");
+    bindDetails(recent);
+  }
+  function renderShipments(kind) {
+    const form = document.querySelector("#" + kind + "-filters"),
+      query = form.elements.search.value.trim().toUpperCase(),
+      status = form.elements.status.value,
+      sort = form.elements.sort?.value || "newest";
+    const list = Arcway.shipments().filter(
+      (s) => s.id.includes(query) && (!status || s.status === status),
+    );
+    list.sort((a, b) =>
+      sort === "oldest"
+        ? new Date(a.created || a.date) - new Date(b.created || b.date)
+        : sort === "amount"
+          ? b.amount - a.amount
+          : new Date(b.created || b.date) - new Date(a.created || a.date),
+    );
+    document.querySelector("#" + kind + "-count").textContent =
+      list.length + " " + (list.length === 1 ? "shipment" : "shipments");
+    const tbody = document.querySelector("#" + kind + "-rows");
+    tbody.innerHTML = list
+      .map((s) => row(s, kind === "history" ? "history" : "track"))
+      .join("");
+    document.querySelector("#" + kind + "-empty").hidden = list.length > 0;
+    document.querySelector("#" + kind + "-table").hidden = !list.length;
+    bindDetails(tbody);
+  }
+  ["track", "history"].forEach((kind) => {
+    const f = document.querySelector("#" + kind + "-filters");
+    f.addEventListener("input", () => renderShipments(kind));
+    f.addEventListener("submit", (e) => e.preventDefault());
+  });
+  function renderInvoices() {
+    const list = Arcway.shipments().filter((s) => s.invoice);
+    document.querySelector("#invoice-rows").innerHTML = list
+      .map(
+        (s) =>
+          `<tr><td data-label="Invoice reference"><span class="mono">${s.invoice}</span><br><small class="muted" style="font-size:14px">Draft</small></td><td data-label="Shipment"><span class="mono">${s.id}</span></td><td data-label="Date">${Arcway.date(s.date)}</td><td data-label="Total (INR)">${Arcway.money(s.amount)}</td><td data-label="Actions"><div class="table-actions"><button class="table-action" data-view-invoice="${s.id}">View</button><button class="table-action" data-download-invoice="${s.id}">PDF ↓</button></div></td></tr>`,
+      )
+      .join("");
+    document
+      .querySelectorAll("[data-view-invoice]")
+      .forEach((b) =>
+        b.addEventListener("click", () =>
+          Arcway.viewInvoice(b.dataset.viewInvoice),
+        ),
+      );
+    document
+      .querySelectorAll("[data-download-invoice]")
+      .forEach((b) =>
+        b.addEventListener("click", () =>
+          Arcway.downloadInvoice(b.dataset.downloadInvoice, b),
+        ),
+      );
+  }
+  function refresh() {
+    renderOverview();
+    renderShipments("track");
+    renderShipments("history");
+    renderInvoices();
+  }
+  window.addEventListener("arcway:shipments", refresh);
+  refresh();
+  const profile = document.querySelector("#profile-form");
+  let stored = Arcway.storage.get("profile", {});
+  if (!stored || typeof stored !== "object" || Array.isArray(stored))
+    stored = {};
+  ["name", "email", "phone", "address"].forEach((k) => {
+    profile.elements[k].value = typeof stored[k] === "string" ? stored[k] : "";
+  });
+  profile.elements.shipmentNotifications.checked =
+    stored.shipmentNotifications === true;
+  profile.elements.emailNotifications.checked =
+    stored.emailNotifications === true;
+  function updateName() {
+    const name = profile.elements.name.value.trim();
+    document.querySelector("#profile-avatar").textContent = name
+      ? name
+          .split(/\s+/)
+          .slice(0, 2)
+          .map((s) => s[0])
+          .join("")
+          .toUpperCase()
+      : "AW";
+  }
+  updateName();
+  profile.addEventListener("submit", (e) => {
+    e.preventDefault();
+    if (!profile.reportValidity()) return;
+    const data = Object.fromEntries(new FormData(profile));
+    data.shipmentNotifications = profile.elements.shipmentNotifications.checked;
+    data.emailNotifications = profile.elements.emailNotifications.checked;
+    if (Arcway.storage.set("profile", data)) {
+      updateName();
+      Arcway.toast(
+        "Preferences saved in this browser. Notification delivery is not connected.",
+      );
+    } else
+      Arcway.toast(
+        "Browser storage is unavailable. Your profile has not been saved.",
+      );
+  });
+  const reset = document.querySelector("#reset-dialog");
+  document
+    .querySelector("[data-reset-data]")
+    .addEventListener("click", () => reset.showModal());
+  document
+    .querySelector("[data-confirm-reset]")
+    .addEventListener("click", () => {
+      try {
+        ["arcway.shipments.v1", "arcway.profile", "arcway.remember"].forEach(
+          (k) => localStorage.removeItem(k),
+        );
+        location.href = "dashboard.html#overview";
+        location.reload();
+      } catch (_) {
+        Arcway.toast("Local browser data could not be reset.");
+      }
+    });
 })();

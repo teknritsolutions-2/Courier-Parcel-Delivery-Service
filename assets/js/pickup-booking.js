@@ -1,21 +1,153 @@
-'use strict';
-(()=>{
- const form=document.querySelector('#pickup-form');if(!form)return;
- const review=document.querySelector('#pickup-review'),confirmation=document.querySelector('#pickup-confirmation'),feedback=document.querySelector('#pickup-feedback'),stepper=document.querySelector('.booking-stepper');
- let draft=null,reference=null,saved=false;
- const date=form.elements.pickupDate;date.min=Arcway.today();
- const params=new URLSearchParams(location.search);['origin','destination','weight','length','width','height','service'].forEach(key=>{if(params.has(key)&&form.elements[key])form.elements[key].value=params.get(key);});
- // Convert calculator measurements into this form's canonical kg/cm units.
- if(params.has('weight')&&params.get('weightUnit')==='g')form.elements.weight.value=Number(params.get('weight'))/1000;
- if(params.has('weight')&&params.get('weightUnit')==='lb')form.elements.weight.value=(Number(params.get('weight'))*.45359237).toFixed(4);
- if(params.get('dimensionUnit')==='in')['length','width','height'].forEach(k=>{if(params.has(k))form.elements[k].value=(Number(params.get(k))*2.54).toFixed(4);});
- function setStep(index){stepper.querySelectorAll('span').forEach((s,i)=>{s.classList.toggle('current',i===index);if(i===index)s.setAttribute('aria-current','step');else s.removeAttribute('aria-current');});}
- function validate(data){const result=Arcway.calculate({...data,weightUnit:'kg',dimensionUnit:'cm'});if(data.pickupDate<Arcway.today())throw Error('Choose today or a future pickup date in India time.');for(const key of ['senderPhone','recipientPhone'])if(!/^[+\d][\d\s()-]{7,19}$/.test(data[key]))throw Error('Enter a valid contact phone number with 8–20 characters.');return result;}
- form.addEventListener('submit',e=>{e.preventDefault();feedback.textContent='';if(!form.reportValidity())return;try{const data=Object.fromEntries(new FormData(form));const estimate=validate(data);draft={data,estimate};saved=false;const bytes=crypto.getRandomValues(new Uint8Array(6));reference='AWL-'+Array.from(bytes,b=>b.toString(16).padStart(2,'0')).join('').toUpperCase();
- const esc=Arcway.escape;
- review.innerHTML=`<span class="eyebrow">Review before you save</span><h2 style="font-size:42px">A clear plan for your parcel.</h2><div class="route-display"><strong>${estimate.origin.name}</strong>${Arcway.icon('arrow','directional')}<strong>${estimate.destination.name}</strong></div><div class="review-grid" style="margin-top:22px"><div class="review-box"><h4>Sender & pickup</h4><p>${esc(data.senderName)}\n${esc(data.senderPhone)}\n${esc(data.pickupAddress)}</p></div><div class="review-box"><h4>Recipient & delivery</h4><p>${esc(data.recipientName)}\n${esc(data.recipientPhone)}\n${esc(data.deliveryAddress)}</p></div></div><dl class="detail-grid"><div><dt>Package</dt><dd>${esc(data.packageType)}</dd></div><div><dt>Service</dt><dd>${estimate.service}</dd></div><div><dt>Actual / billable weight</dt><dd>${estimate.weight.toFixed(2)} / ${estimate.billable.toFixed(2)} kg</dd></div><div><dt>Dimensions (cm)</dt><dd>${esc(data.length)} × ${esc(data.width)} × ${esc(data.height)}</dd></div><div><dt>Requested pickup date</dt><dd>${Arcway.date(data.pickupDate)}</dd></div><div><dt>Preferred window</dt><dd>${esc(data.window)}</dd></div></dl>${data.notes?`<div class="review-box"><h4>Notes</h4><p>${esc(data.notes)}</p></div>`:''}<div class="estimate-total" style="margin-top:25px"><span>Illustrative estimate</span><strong>${Arcway.money(estimate.total)}</strong></div><p class="form-note">Includes ${Arcway.money(estimate.base)} base + ${Arcway.money(estimate.additional)} weight + ${Arcway.money(estimate.zone)} distance zone. Taxes are not configured.</p><div class="notice">Saving creates one local demonstration request in this browser. It does not contact a courier, schedule an actual collection, or dispatch a driver.</div><div class="form-actions"><button class="btn btn-outline" type="button" data-edit-pickup>Edit details</button><button class="btn btn-primary" type="button" data-save-pickup>Save local request ${Arcway.icon('check')}</button></div><div class="form-feedback" id="save-feedback" role="alert"></div>`;
- form.hidden=true;review.hidden=false;confirmation.hidden=true;setStep(1);review.setAttribute('tabindex','-1');review.focus({preventScroll:true});review.scrollIntoView({block:'start'});
- review.querySelector('[data-edit-pickup]').addEventListener('click',()=>{review.hidden=true;form.hidden=false;setStep(0);form.elements.senderName.focus();});review.querySelector('[data-save-pickup]').addEventListener('click',save);
- }catch(error){feedback.textContent=error.message;}});
- function save(){if(saved||!draft)return;const button=review.querySelector('[data-save-pickup]');button.disabled=true;try{validate(draft.data);const {data,estimate}=draft;const record={id:reference,origin:data.origin,destination:data.destination,service:data.service,date:data.pickupDate,created:new Date().toISOString(),expected:null,status:'Pickup requested',weight:estimate.weight,amount:estimate.total,invoice:null,details:data,events:[{title:'Pickup requested',date:new Date().toISOString(),place:estimate.origin.name+' · Saved locally'}]};Arcway.saveShipment(record);saved=true;review.hidden=true;confirmation.hidden=false;setStep(2);confirmation.innerHTML=`<div class="confirmation-icon">${Arcway.icon('check')}</div><span class="eyebrow">Saved in this browser</span><h2>Your local pickup request<br>is ready to explore.</h2><p>This is a demonstration record. No carrier has received this request and no driver has been dispatched.</p><span class="booking-ref">${reference}</span><div class="actions"><a class="btn btn-primary" href="tracking.html?id=${reference}">View the request ${Arcway.icon('arrow','directional')}</a><button class="btn btn-outline" data-new-pickup>Create another request</button></div><p class="form-note">Find this same reference in Shipment History and Track Parcels. New requests have no invoice because no billing event has occurred.</p>`;confirmation.setAttribute('tabindex','-1');confirmation.focus({preventScroll:true});confirmation.scrollIntoView({block:'start'});confirmation.querySelector('[data-new-pickup]').addEventListener('click',()=>{draft=null;reference=null;saved=false;confirmation.hidden=true;form.hidden=false;form.reset();date.min=Arcway.today();setStep(0);form.elements.senderName.focus();});}catch(error){review.querySelector('#save-feedback').textContent=error.message;button.disabled=false;}}
+"use strict";
+(() => {
+  const form = document.querySelector("#pickup-form");
+  if (!form) return;
+  const review = document.querySelector("#pickup-review"),
+    confirmation = document.querySelector("#pickup-confirmation"),
+    feedback = document.querySelector("#pickup-feedback"),
+    stepper = document.querySelector(".booking-stepper");
+  let draft = null,
+    reference = null,
+    saved = false;
+  const date = form.elements.pickupDate;
+  date.min = Arcway.today();
+  const params = new URLSearchParams(location.search);
+  [
+    "origin",
+    "destination",
+    "weight",
+    "length",
+    "width",
+    "height",
+    "service",
+  ].forEach((key) => {
+    if (params.has(key) && form.elements[key])
+      form.elements[key].value = params.get(key);
+  });
+  // Convert calculator measurements into this form's canonical kg/cm units.
+  if (params.has("weight") && params.get("weightUnit") === "g")
+    form.elements.weight.value = Number(params.get("weight")) / 1000;
+  if (params.has("weight") && params.get("weightUnit") === "lb")
+    form.elements.weight.value = (
+      Number(params.get("weight")) * 0.45359237
+    ).toFixed(4);
+  if (params.get("dimensionUnit") === "in")
+    ["length", "width", "height"].forEach((k) => {
+      if (params.has(k))
+        form.elements[k].value = (Number(params.get(k)) * 2.54).toFixed(4);
+    });
+  function setStep(index) {
+    stepper.querySelectorAll("span").forEach((s, i) => {
+      s.classList.toggle("current", i === index);
+      if (i === index) s.setAttribute("aria-current", "step");
+      else s.removeAttribute("aria-current");
+    });
+  }
+  function validate(data) {
+    const result = Arcway.calculate({
+      ...data,
+      weightUnit: "kg",
+      dimensionUnit: "cm",
+    });
+    if (data.pickupDate < Arcway.today())
+      throw Error("Choose today or a future pickup date in India time.");
+    for (const key of ["senderPhone", "recipientPhone"])
+      if (!/^[+\d][\d\s()-]{7,19}$/.test(data[key]))
+        throw Error("Enter a valid contact phone number with 8–20 characters.");
+    return result;
+  }
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    feedback.textContent = "";
+    if (!form.reportValidity()) return;
+    try {
+      const data = Object.fromEntries(new FormData(form));
+      const estimate = validate(data);
+      draft = { data, estimate };
+      saved = false;
+      const bytes = crypto.getRandomValues(new Uint8Array(6));
+      reference =
+        "AWL-" +
+        Array.from(bytes, (b) => b.toString(16).padStart(2, "0"))
+          .join("")
+          .toUpperCase();
+      const esc = Arcway.escape;
+      review.innerHTML = `<span class="eyebrow">Review before you save</span><h2 style="font-size:42px">A clear plan for your parcel.</h2><div class="route-display"><strong>${estimate.origin.name}</strong>${Arcway.icon("arrow", "directional")}<strong>${estimate.destination.name}</strong></div><div class="review-grid" style="margin-top:22px"><div class="review-box"><h4>Sender & pickup</h4><p>${esc(data.senderName)}\n${esc(data.senderPhone)}\n${esc(data.pickupAddress)}</p></div><div class="review-box"><h4>Recipient & delivery</h4><p>${esc(data.recipientName)}\n${esc(data.recipientPhone)}\n${esc(data.deliveryAddress)}</p></div></div><dl class="detail-grid"><div><dt>Package</dt><dd>${esc(data.packageType)}</dd></div><div><dt>Service</dt><dd>${estimate.service}</dd></div><div><dt>Actual / billable weight</dt><dd>${estimate.weight.toFixed(2)} / ${estimate.billable.toFixed(2)} kg</dd></div><div><dt>Dimensions (cm)</dt><dd>${esc(data.length)} × ${esc(data.width)} × ${esc(data.height)}</dd></div><div><dt>Requested pickup date</dt><dd>${Arcway.date(data.pickupDate)}</dd></div><div><dt>Preferred window</dt><dd>${esc(data.window)}</dd></div></dl>${data.notes ? `<div class="review-box"><h4>Notes</h4><p>${esc(data.notes)}</p></div>` : ""}<div class="estimate-total" style="margin-top:25px"><span>Estimated total</span><strong>${Arcway.money(estimate.total)}</strong></div><p class="form-note">Includes ${Arcway.money(estimate.base)} base + ${Arcway.money(estimate.additional)} weight + ${Arcway.money(estimate.zone)} distance zone. Taxes are not configured.</p><div class="notice">Saving keeps this request in your browser. It does not reserve a collection or dispatch a courier.</div><div class="form-actions"><button class="btn btn-outline" type="button" data-edit-pickup>Edit details</button><button class="btn btn-primary" type="button" data-save-pickup>Save request ${Arcway.icon("check")}</button></div><div class="form-feedback" id="save-feedback" role="alert"></div>`;
+      form.hidden = true;
+      review.hidden = false;
+      confirmation.hidden = true;
+      setStep(1);
+      review.setAttribute("tabindex", "-1");
+      review.focus({ preventScroll: true });
+      review.scrollIntoView({ block: "start" });
+      review
+        .querySelector("[data-edit-pickup]")
+        .addEventListener("click", () => {
+          review.hidden = true;
+          form.hidden = false;
+          setStep(0);
+          form.elements.senderName.focus();
+        });
+      review
+        .querySelector("[data-save-pickup]")
+        .addEventListener("click", save);
+    } catch (error) {
+      feedback.textContent = error.message;
+    }
+  });
+  function save() {
+    if (saved || !draft) return;
+    const button = review.querySelector("[data-save-pickup]");
+    button.disabled = true;
+    try {
+      validate(draft.data);
+      const { data, estimate } = draft;
+      const record = {
+        id: reference,
+        origin: data.origin,
+        destination: data.destination,
+        service: data.service,
+        date: data.pickupDate,
+        created: new Date().toISOString(),
+        expected: null,
+        status: "Pickup requested",
+        weight: estimate.weight,
+        amount: estimate.total,
+        invoice: null,
+        details: data,
+        events: [
+          {
+            title: "Pickup requested",
+            date: new Date().toISOString(),
+            place: estimate.origin.name + " · Saved locally",
+          },
+        ],
+      };
+      Arcway.saveShipment(record);
+      saved = true;
+      review.hidden = true;
+      confirmation.hidden = false;
+      setStep(2);
+      confirmation.innerHTML = `<div class="confirmation-icon">${Arcway.icon("check")}</div><span class="eyebrow">Saved in this browser</span><h2>Your pickup request<br>is saved.</h2><p>This request stays on this device. It has not been sent to a courier.</p><span class="booking-ref">${reference}</span><div class="actions"><a class="btn btn-primary" href="tracking.html?id=${reference}">View the request ${Arcway.icon("arrow", "directional")}</a><button class="btn btn-outline" data-new-pickup>Create another request</button></div><p class="form-note">Find this reference in Shipment History and Track Parcels.</p>`;
+      confirmation.setAttribute("tabindex", "-1");
+      confirmation.focus({ preventScroll: true });
+      confirmation.scrollIntoView({ block: "start" });
+      confirmation
+        .querySelector("[data-new-pickup]")
+        .addEventListener("click", () => {
+          draft = null;
+          reference = null;
+          saved = false;
+          confirmation.hidden = true;
+          form.hidden = false;
+          form.reset();
+          date.min = Arcway.today();
+          setStep(0);
+          form.elements.senderName.focus();
+        });
+    } catch (error) {
+      review.querySelector("#save-feedback").textContent = error.message;
+      button.disabled = false;
+    }
+  }
 })();

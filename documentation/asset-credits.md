@@ -2,15 +2,22 @@
 
 Reviewed 11 November 2026. Assets are bundled locally; no runtime CDN is required.
 
-## Earth imagery
+## Earth land geometry — current visualization
 
-`assets/images/earth-blue-marble.jpg` is the Blue Marble day texture distributed in the [three-globe example assets](https://github.com/vasturiano/three-globe/blob/master/example/img/earth-blue-marble.jpg). Original raster inspected: **4096 × 2048**, JPEG, north-up, 2:1 equirectangular longitude/latitude map. Local optimized copy: **2048 × 1024**. The complete global raster is used without cropping or mirroring, as a spherical texture through Globe.GL.
+The photographic Earth texture was removed in the visual refinement. The current Earth uses **Natural Earth 1:110m land polygons, pinned version 5.1.2**. Local file: `assets/data/ne_110m_land.geojson`, a 138,160-byte FeatureCollection containing 127 Polygon features.
 
-Imagery credit: **NASA Earth Observatory / Blue Marble**. Reference: [NASA Blue Marble (2002)](https://science.nasa.gov/earth/earth-observatory/the-blue-marble-true-color-global-imagery-at-1km-resolution/), [NASA imagery/media guidelines](https://www.nasa.gov/nasa-brand-center/images-and-media/). The older Visible Earth collection URL now redirects to NASA Science. The direct historical NASA image download stalled; the static three-globe distribution was used instead. NASA imagery is acknowledged on the globe itself. No NASA logo, endorsement or affiliation is represented.
+- [Pinned download](https://raw.githubusercontent.com/nvkelso/natural-earth-vector/v5.1.2/geojson/ne_110m_land.geojson)
+- [Land-layer description](https://www.naturalearthdata.com/downloads/110m-physical-vectors/110m-land/)
+- [Natural Earth public-domain terms](https://www.naturalearthdata.com/about/terms-of-use/)
+- SHA-256: `9e0729ee253ca7d7a5c4ae9395fb1902264c5377c52e224d13dd85010e2835d9`
+
+The genuine land geometry is rendered over Globe.GL's spherical surface with a soft ice-blue material. A depth-only front surface prevents back-side continents appearing through the translucent ocean. The static fallback uses the same land polygons and coordinate-based great-circle route samples projected equirectangularly. Neither uses invented silhouettes. Generalization at 1:110m can omit small islands; city coordinates remain independent geographic references.
+
+The retired NASA raster is not shipped or loaded by the current site. Historical screenshots and earlier QA descriptions refer to the initial version only.
 
 ## Geographic data
 
-Coordinate source: [GeoNames largest Indian cities](https://www.geonames.org/IN/largest-cities-in-india.html), [GeoNames India search](https://www.geonames.org/advanced-search.html?country=IN) and [Kochi record 1273874](https://www.geonames.org/1273874/kochi.html). [GeoNames terms](https://www.geonames.org/export/): Creative Commons Attribution 4.0. City centers are geographic references, not depot locations or verified service coverage. Detailed WGS84 coordinates are centralized in `city-data.js`.
+Coordinate source: [GeoNames largest Indian cities](https://www.geonames.org/IN/largest-cities-in-india.html), [GeoNames India search](https://www.geonames.org/advanced-search.html?country=IN) and [Kochi record 1273874](https://www.geonames.org/1273874/kochi.html). [GeoNames terms](https://www.geonames.org/export/): Creative Commons Attribution 4.0. City centers are geographic references, not depot locations or verified service coverage. Detailed WGS84 coordinates are centralized in `city-data.js`. Five international city centers (Dubai, Singapore, London, Frankfurt and New York) are listed with exact GeoNames records in `globe-source-research.md`. GeoNames attribution is also reachable through the public footer’s Asset credits link.
 
 The small public route diagram is an equirectangular city-coordinate diagram with a graticule, not an administrative boundary map. Its five connections are illustrative. The Earth routes use Globe.GL spherical arcs from those same coordinates. No international service is claimed.
 
