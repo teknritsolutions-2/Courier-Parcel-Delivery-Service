@@ -1,0 +1,5 @@
+[dir=rtl] .heading-meta{right:auto;left:0}[dir=rtl] .timeline li{padding:0 35px 28px 0}[dir=rtl] .timeline li:before{left:auto;right:5px}[dir=rtl] .timeline li:after{left:auto;right:9px}[dir=rtl] .directional{transform:scaleX(-1)}[dir=rtl] .globe-shell,[dir=rtl] .network-panel svg{direction:ltr}[dir=rtl] .tracking-field input,[dir=rtl] .mono{unicode-bidi:plaintext}[dir=rtl] input[type=email],[dir=rtl] input[type=tel],[dir=rtl] input[type=password]{direction:ltr;text-align:right}
+
+[dir=rtl] h1,[dir=rtl] h2,[dir=rtl] h3,[dir=rtl] p,[dir=rtl] label,[dir=rtl] .eyebrow{unicode-bidi:plaintext}
+
+[dir=rtl] h1,[dir=rtl] h2,[dir=rtl] h3,[dir=rtl] p,[dir=rtl] label{ text-align:right }[dir=rtl] .dash-demo span,[dir=rtl] .dash-table td,[dir=rtl] .detail-grid dd{unicode-bidi:plaintext;text-align:right}

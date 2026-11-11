@@ -1,0 +1,627 @@
+{
+  "date": "2026-11-11T05:33:04.342Z",
+  "browser": "Installed Brave Chromium, software WebGL",
+  "checks": [
+    "Calculator actual UI: INR127",
+    "Calculator unit conversion and invalid local route",
+    "Tracking static events, delivered sample, missing and malformed IDs",
+    "Coverage city/state search and region filter",
+    "Contact validated unsent preview",
+    "Signup mismatch validation, honest feedback, OAuth unavailable, no stored password",
+    "Login, password visibility, remember preference, unavailable recovery",
+    "Pickup review, save once, reference, overview reconciliation, history/details and public tracking consistency",
+    "Draft invoice preview and actual PDF download",
+    "Profile persistence and confirmed local data reset",
+    "WebGL globe renders, route selection/reset and rotation controls",
+    "Shortcut query transfer, keyboard dropdown and back-to-top",
+    "All ten pages: no page overflow at all 12 specified widths",
+    "All ten pages in combined dark + RTL at 390, 820 and 1440",
+    "Mobile public menu and dashboard sidebar, Escape, tab selection, inert state",
+    "WebGL unavailable: usable fallback and route selector",
+    "Reduced motion disables automatic rotation"
+  ],
+  "viewportResults": [
+    {
+      "width": 320,
+      "page": "index",
+      "overflow": false
+    },
+    {
+      "width": 320,
+      "page": "home2",
+      "overflow": false
+    },
+    {
+      "width": 320,
+      "page": "services",
+      "overflow": false
+    },
+    {
+      "width": 320,
+      "page": "rate-calculator",
+      "overflow": false
+    },
+    {
+      "width": 320,
+      "page": "tracking",
+      "overflow": false
+    },
+    {
+      "width": 320,
+      "page": "coverage",
+      "overflow": false
+    },
+    {
+      "width": 320,
+      "page": "contact",
+      "overflow": false
+    },
+    {
+      "width": 320,
+      "page": "login",
+      "overflow": false
+    },
+    {
+      "width": 320,
+      "page": "signup",
+      "overflow": false
+    },
+    {
+      "width": 320,
+      "page": "dashboard",
+      "overflow": false
+    },
+    {
+      "width": 360,
+      "page": "index",
+      "overflow": false
+    },
+    {
+      "width": 360,
+      "page": "home2",
+      "overflow": false
+    },
+    {
+      "width": 360,
+      "page": "services",
+      "overflow": false
+    },
+    {
+      "width": 360,
+      "page": "rate-calculator",
+      "overflow": false
+    },
+    {
+      "width": 360,
+      "page": "tracking",
+      "overflow": false
+    },
+    {
+      "width": 360,
+      "page": "coverage",
+      "overflow": false
+    },
+    {
+      "width": 360,
+      "page": "contact",
+      "overflow": false
+    },
+    {
+      "width": 360,
+      "page": "login",
+      "overflow": false
+    },
+    {
+      "width": 360,
+      "page": "signup",
+      "overflow": false
+    },
+    {
+      "width": 360,
+      "page": "dashboard",
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "page": "index",
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "page": "home2",
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "page": "services",
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "page": "rate-calculator",
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "page": "tracking",
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "page": "coverage",
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "page": "contact",
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "page": "login",
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "page": "signup",
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "page": "dashboard",
+      "overflow": false
+    },
+    {
+      "width": 425,
+      "page": "index",
+      "overflow": false
+    },
+    {
+      "width": 425,
+      "page": "home2",
+      "overflow": false
+    },
+    {
+      "width": 425,
+      "page": "services",
+      "overflow": false
+    },
+    {
+      "width": 425,
+      "page": "rate-calculator",
+      "overflow": false
+    },
+    {
+      "width": 425,
+      "page": "tracking",
+      "overflow": false
+    },
+    {
+      "width": 425,
+      "page": "coverage",
+      "overflow": false
+    },
+    {
+      "width": 425,
+      "page": "contact",
+      "overflow": false
+    },
+    {
+      "width": 425,
+      "page": "login",
+      "overflow": false
+    },
+    {
+      "width": 425,
+      "page": "signup",
+      "overflow": false
+    },
+    {
+      "width": 425,
+      "page": "dashboard",
+      "overflow": false
+    },
+    {
+      "width": 430,
+      "page": "index",
+      "overflow": false
+    },
+    {
+      "width": 430,
+      "page": "home2",
+      "overflow": false
+    },
+    {
+      "width": 430,
+      "page": "services",
+      "overflow": false
+    },
+    {
+      "width": 430,
+      "page": "rate-calculator",
+      "overflow": false
+    },
+    {
+      "width": 430,
+      "page": "tracking",
+      "overflow": false
+    },
+    {
+      "width": 430,
+      "page": "coverage",
+      "overflow": false
+    },
+    {
+      "width": 430,
+      "page": "contact",
+      "overflow": false
+    },
+    {
+      "width": 430,
+      "page": "login",
+      "overflow": false
+    },
+    {
+      "width": 430,
+      "page": "signup",
+      "overflow": false
+    },
+    {
+      "width": 430,
+      "page": "dashboard",
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "page": "index",
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "page": "home2",
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "page": "services",
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "page": "rate-calculator",
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "page": "tracking",
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "page": "coverage",
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "page": "contact",
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "page": "login",
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "page": "signup",
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "page": "dashboard",
+      "overflow": false
+    },
+    {
+      "width": 820,
+      "page": "index",
+      "overflow": false
+    },
+    {
+      "width": 820,
+      "page": "home2",
+      "overflow": false
+    },
+    {
+      "width": 820,
+      "page": "services",
+      "overflow": false
+    },
+    {
+      "width": 820,
+      "page": "rate-calculator",
+      "overflow": false
+    },
+    {
+      "width": 820,
+      "page": "tracking",
+      "overflow": false
+    },
+    {
+      "width": 820,
+      "page": "coverage",
+      "overflow": false
+    },
+    {
+      "width": 820,
+      "page": "contact",
+      "overflow": false
+    },
+    {
+      "width": 820,
+      "page": "login",
+      "overflow": false
+    },
+    {
+      "width": 820,
+      "page": "signup",
+      "overflow": false
+    },
+    {
+      "width": 820,
+      "page": "dashboard",
+      "overflow": false
+    },
+    {
+      "width": 960,
+      "page": "index",
+      "overflow": false
+    },
+    {
+      "width": 960,
+      "page": "home2",
+      "overflow": false
+    },
+    {
+      "width": 960,
+      "page": "services",
+      "overflow": false
+    },
+    {
+      "width": 960,
+      "page": "rate-calculator",
+      "overflow": false
+    },
+    {
+      "width": 960,
+      "page": "tracking",
+      "overflow": false
+    },
+    {
+      "width": 960,
+      "page": "coverage",
+      "overflow": false
+    },
+    {
+      "width": 960,
+      "page": "contact",
+      "overflow": false
+    },
+    {
+      "width": 960,
+      "page": "login",
+      "overflow": false
+    },
+    {
+      "width": 960,
+      "page": "signup",
+      "overflow": false
+    },
+    {
+      "width": 960,
+      "page": "dashboard",
+      "overflow": false
+    },
+    {
+      "width": 1024,
+      "page": "index",
+      "overflow": false
+    },
+    {
+      "width": 1024,
+      "page": "home2",
+      "overflow": false
+    },
+    {
+      "width": 1024,
+      "page": "services",
+      "overflow": false
+    },
+    {
+      "width": 1024,
+      "page": "rate-calculator",
+      "overflow": false
+    },
+    {
+      "width": 1024,
+      "page": "tracking",
+      "overflow": false
+    },
+    {
+      "width": 1024,
+      "page": "coverage",
+      "overflow": false
+    },
+    {
+      "width": 1024,
+      "page": "contact",
+      "overflow": false
+    },
+    {
+      "width": 1024,
+      "page": "login",
+      "overflow": false
+    },
+    {
+      "width": 1024,
+      "page": "signup",
+      "overflow": false
+    },
+    {
+      "width": 1024,
+      "page": "dashboard",
+      "overflow": false
+    },
+    {
+      "width": 1180,
+      "page": "index",
+      "overflow": false
+    },
+    {
+      "width": 1180,
+      "page": "home2",
+      "overflow": false
+    },
+    {
+      "width": 1180,
+      "page": "services",
+      "overflow": false
+    },
+    {
+      "width": 1180,
+      "page": "rate-calculator",
+      "overflow": false
+    },
+    {
+      "width": 1180,
+      "page": "tracking",
+      "overflow": false
+    },
+    {
+      "width": 1180,
+      "page": "coverage",
+      "overflow": false
+    },
+    {
+      "width": 1180,
+      "page": "contact",
+      "overflow": false
+    },
+    {
+      "width": 1180,
+      "page": "login",
+      "overflow": false
+    },
+    {
+      "width": 1180,
+      "page": "signup",
+      "overflow": false
+    },
+    {
+      "width": 1180,
+      "page": "dashboard",
+      "overflow": false
+    },
+    {
+      "width": 1280,
+      "page": "index",
+      "overflow": false
+    },
+    {
+      "width": 1280,
+      "page": "home2",
+      "overflow": false
+    },
+    {
+      "width": 1280,
+      "page": "services",
+      "overflow": false
+    },
+    {
+      "width": 1280,
+      "page": "rate-calculator",
+      "overflow": false
+    },
+    {
+      "width": 1280,
+      "page": "tracking",
+      "overflow": false
+    },
+    {
+      "width": 1280,
+      "page": "coverage",
+      "overflow": false
+    },
+    {
+      "width": 1280,
+      "page": "contact",
+      "overflow": false
+    },
+    {
+      "width": 1280,
+      "page": "login",
+      "overflow": false
+    },
+    {
+      "width": 1280,
+      "page": "signup",
+      "overflow": false
+    },
+    {
+      "width": 1280,
+      "page": "dashboard",
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "page": "index",
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "page": "home2",
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "page": "services",
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "page": "rate-calculator",
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "page": "tracking",
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "page": "coverage",
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "page": "contact",
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "page": "login",
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "page": "signup",
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "page": "dashboard",
+      "overflow": false
+    }
+  ],
+  "errors": [],
+  "screenshotDirectory": "/tmp/arcway-qa"
+}

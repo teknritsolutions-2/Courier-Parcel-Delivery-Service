@@ -1,0 +1,28 @@
+# Reference architecture and responsive review
+
+Reviewed through the connected GitHub read tools on 11 November 2026. These findings concern source organization and actual patches; no visual testing of the reference sites is claimed.
+
+## Architecture sources
+
+- [Travel agency repository](https://github.com/teknritsolutions-2/travel-agency-holiday-packages): inspected the recursive main tree, root index and physical dashboard HTML. Uses root index.html, pages/*.html, assets/css/{fonts,style,dark-mode,rtl}.css, assets/js/{site-config,travel-data,main,dashboard,select-controls}.js and documentation. HTML loads shared deferred scripts with relative paths and identifies its page through body data attributes. The dashboard has a physical URL and separate feature script. Its large main.js is an organization lesson rather than a pattern to repeat.
+- [Yoga and Meditation Studio](https://github.com/teknritsolutions-2/Yoga-Meditation-Studio): inspected recursive main tree, documentation/ARCHITECTURE.md, assets/js/dashboard.js and booking.js. Separates auth, public presentation, catalog data, booking/state, schedule and dashboard code. No build dependency is required. Public authored content and shared shell coexist. Sidebar/topbar/main dashboard sections use hashes, preserving direct section access and refresh behavior.
+- Yoga state validates its persisted structure, derives statistics from central records, snapshots bookings, rejects duplicates, and distinguishes local state from real reservations. ARCWAY should use the same consistency principles without importing membership concepts or visual styling.
+- Yoga mobile sidebar is inert while closed; opening moves focus, locks background scrolling and contains keyboard focus. Escape/backdrop/link selection close it, restore focus and release the scroll lock. Breakpoint changes reset the drawer. Forms, dialogs and tables have theme tokens; photos remain unmirrored in RTL.
+- Both authentication flows remain separate from public navigation and provide direct workspace access without claiming real authentication. A shared config controls business details and relative page paths.
+
+## Actual requested responsive patches
+
+| Repository / commit | Observed implementation | Applicable lesson |
+| --- | --- | --- |
+| [Phone repair d920aa16](https://github.com/teknritsolutions-2/Mobile-Phone-Repair-Accessories-Shop/commit/d920aa16) | Phone retail cards become vertical flex columns; photos use full natural width/height; supporting copy grows to 16px, headings to 24px, and cards receive deliberate spacing/dividers. Competing later image rules are removed. | Keep complete important photographic subjects visible; avoid squeezing phone photography beside copy; maintain readable supporting type. |
+| [Phone repair bf0d2cbe](https://github.com/teknritsolutions-2/Mobile-Phone-Repair-Accessories-Shop/commit/bf0d2cbe) | At 1099px and below, split hero becomes a single column with full photographic background and dark overlay; phone object-position changes intentionally. RTL reverses the overlay direction without mirroring the photo. | Redesign a hero composition at tablet widths, set crop per container, and preserve contrast. Do not simply shrink desktop columns. |
+| [Phone repair 6c6c5722](https://github.com/teknritsolutions-2/Mobile-Phone-Repair-Accessories-Shop/commit/6c6c5722) | Product cards adopt six shared subgrid rows for visual, category, heading, copy, price and CTA; spacing is assigned between cards, not between repeated subgrid tracks. Phone side-by-side retail rules are removed. | Align repeated content and CTAs without arbitrary spacer heights; collapse deliberate card layouts on phones. |
+| [Travel 76e6c867](https://github.com/teknritsolutions-2/travel-agency-holiday-packages/commit/76e6c867) | Exactly-three card collections and several information/postcard groups become one column from 681 through 1240px; special centered-third-card rules and postcard rotation are removed. | Avoid a narrow third card or uneven tablet remainder; choose complete readable rows. |
+| [Travel 7dadfad3](https://github.com/teknritsolutions-2/travel-agency-holiday-packages/commit/7dadfad3) | Public header becomes fixed through 1240px, with 81px main clearance (75px on phones); dashboard topbar becomes sticky. | Navigation must stay reachable after scrolling, with matching content clearance and stacking order. Test from page bottom. |
+| [Travel 1be821b3](https://github.com/teknritsolutions-2/travel-agency-holiday-packages/commit/1be821b3) | Phone editorial pairs use a single full-width image-before-copy row and 3:2 photo; Home 2/About image order and dashboard welcome photo are corrected. Removes effect of later conflicting desktop rules. | Keep mobile imagery substantial and correctly ordered; use min-width:0 and check stylesheet ordering for breakpoint overrides. |
+| [Travel 16fa2e97](https://github.com/teknritsolutions-2/travel-agency-holiday-packages/commit/16fa2e97) | Restores recognizable Google/Apple marks and equal provider controls with truthful unavailable feedback, sets mobile drawer to the right edge in both directions, and aligns hero label to text by removing decorative offset. | Preserve requested provider controls without pretending OAuth works; ensure menu placement and visual alignment are intentional. |
+
+## Scope and limitations
+
+All seven named commit patches were retrieved and read. The architectures were examined at their main-branch state available during this review. No source, typography, imagery, branding or visual design was copied. Reference QA claims are statements made by those repositories, not ARCWAY test results; ARCWAY requires its own verification.
+
