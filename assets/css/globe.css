@@ -330,11 +330,16 @@
     font-size: 14px;
   }
   .globe-shell {
-    height: 350px;
+    /* Reserve a separate caption row above the globe without shrinking it. */
+    height: 382px;
     margin-block: 8px;
   }
+  .globe-stage {
+    top: 32px;
+    height: calc(100% - 32px);
+  }
   .globe-caption {
-    top: 9px;
+    top: 4px;
     font-size: 11px;
   }
   .globe-gesture {
@@ -394,7 +399,7 @@
     padding-inline: 5px;
   }
   .globe-shell {
-    height: 325px;
+    height: 357px;
   }
   .globe-city-name {
     font-size: 13px;

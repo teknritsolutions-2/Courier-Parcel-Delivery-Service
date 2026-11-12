@@ -352,8 +352,8 @@
         animateIn: false,
         rendererConfig: { alpha: true, antialias: devicePixelRatio < 2 },
       })
-        .width(shell.clientWidth)
-        .height(shell.clientHeight)
+        .width(stage.clientWidth)
+        .height(stage.clientHeight)
         .backgroundColor("rgba(0,0,0,0)")
         .showAtmosphere(true)
         .atmosphereColor("#b5d8ed")
@@ -427,7 +427,7 @@
           fallback();
         });
       resizeObserver = new ResizeObserver(() => {
-        globe.width(shell.clientWidth).height(shell.clientHeight);
+        globe.width(stage.clientWidth).height(stage.clientHeight);
       });
       resizeObserver.observe(shell);
       visibilityObserver = new IntersectionObserver(
