@@ -20,7 +20,7 @@ Implemented 11 November 2026. Existing physical pages, vanilla architecture, pri
 ## Globe redesign
 
 - Local **Globe.GL 2.46.2** retained. No second Three.js bundle or application framework.
-- Local **Natural Earth 5.1.2**, 127 genuine land polygons. The photographic texture was removed. Ice-blue ocean material uses real transparency, subtle emissive fill/specular lighting and a restrained atmosphere. A depth-only front pass hides rear land/lines to prevent misleading geography.
+- Local **Natural Earth 5.1.2**, 127 genuine land polygons. The photographic texture was removed. Ice-blue ocean material uses subtle emissive fill/specular lighting and a restrained atmosphere. The motion fix uses one opaque depth-writing ocean surface and opaque land caps, avoiding transparent-layer sorting and the former duplicate depth pass. Land caps now use 2° curvature resolution at 0.006 radius altitude so their triangle interiors stay above the ocean during rotation.
 - Nine existing Indian centers plus verified **Dubai, Singapore, London, Frankfurt and New York** centers. Exact values/source records are in `globe-source-research.md`; Natural Earth/GeoNames credits remain available.
 - Domestic view retains five connections. International view adds Mumbai–Dubai, Mumbai–Singapore, Delhi–London, Bengaluru–Singapore and Hyderabad–Frankfurt. New York can be inspected as a city reference.
 - Selected endpoints use orange markers and readable fixed-size labels. Camera framing uses a spherical vector midpoint; data tests verify both endpoints face the fitted camera. A continuous selected arc underlies the optional slow moving highlight.
@@ -56,3 +56,7 @@ The browser passes use desktop Chromium/Brave and installed WebKit with viewport
 Real carrier booking/tracking, approved coverage/tariffs, authentication/OAuth/recovery, messaging and notifications, secure customer ownership and official tax/billing records still need real services. Existing sample/local data remains truthful at the relevant action points.
 
 GitHub Pages production verification is performed after publication and reported in the delivery message; local screenshots alone are not presented as production evidence.
+
+### Follow-up: globe motion rendering
+
+Reproduced land patches clipping into the ocean at multiple camera longitudes. Replaced 5° land-cap curvature with 2°, raised land from 0.002 to 0.006 globe radii, and removed the duplicate depth-mask/transparent surface stack. Compared nine fixed viewpoints before/after; inspected actual drag frames in Chromium and WebKit. Both browsers passed all ten route selections, drag movement in both networks, auto-rotation, reset, and a 390px mobile view without page errors. The pale appearance is retained using opaque surfaces and lighting; the ocean is no longer literally transparent.

@@ -65,7 +65,7 @@
     return element;
   }
 
-  // Prevent far-side city meshes showing through the translucent ocean material.
+  // Keep city markers limited to the visible hemisphere.
   // For a surface point P and camera C, visibility is dot(P, C) > radius².
   function updateVisiblePoints() {
     if (!globe || disposed) return;
@@ -359,9 +359,11 @@
         .atmosphereColor("#b5d8ed")
         .atmosphereAltitude(0.075)
         .polygonsData(land.features)
-        .polygonAltitude(0.002)
-        .polygonCapColor(() => "rgba(161,196,215,0.88)")
-        .polygonSideColor(() => "rgba(140,180,200,0.22)")
+        // Finer spherical caps stay above the ocean between vertices.
+        .polygonAltitude(0.006)
+        .polygonCapCurvatureResolution(2)
+        .polygonCapColor(() => "#a9c9da")
+        .polygonSideColor(() => "#8cb4c8")
         .polygonStrokeColor(() => "#8cb4c8")
         .polygonsTransitionDuration(0)
         .pointLat("lat")
@@ -395,35 +397,14 @@
       material.color.set("#dceef7");
       material.specular.set("#b0d1e2");
       material.shininess = 32;
-      material.transparent = true;
-      material.opacity = 0.88;
+      // One opaque depth-writing surface avoids transparent sorting and
+      // coplanar depth-mask artifacts during camera movement. Pale lighting
+      // retains the ice-blue appearance without rendering the rear hemisphere.
+      material.transparent = false;
+      material.opacity = 1;
       material.emissive.set("#bfdbe9");
       material.emissiveIntensity = 0.7;
       material.depthWrite = true;
-      // Depth-only front surface prevents rear coastlines/land showing through
-      // the translucent shell. Reuse the existing mesh; no extra Three build.
-      function installDepthMask(attempt = 0) {
-        if (disposed) return;
-        let earthMesh;
-        globe.scene().traverse((object) => {
-          if (object.isMesh && object.material === material) earthMesh = object;
-        });
-        // Globe.GL mounts its base sphere on the next render cycle.
-        if (!earthMesh) {
-          if (attempt < 12)
-            requestAnimationFrame(() => installDepthMask(attempt + 1));
-          return;
-        }
-        const depthMask = earthMesh.clone(false);
-        depthMask.material = material.clone();
-        depthMask.material.colorWrite = false;
-        depthMask.material.transparent = false;
-        depthMask.material.depthWrite = true;
-        depthMask.material.side = 0; // FrontSide
-        depthMask.renderOrder = -10;
-        earthMesh.parent.add(depthMask);
-      }
-      installDepthMask();
       globe.lights().forEach((light) => {
         if (light.isAmbientLight) light.intensity = 2.1;
       });
