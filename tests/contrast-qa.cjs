@@ -70,7 +70,7 @@ const fs = require("node:fs");
                 (n) => n.nodeType === 3 && n.textContent.trim(),
               ) &&
               !e.closest(
-                "noscript,.home2-hero,.globe-stage,.globe-fallback,.brand",
+                "noscript,.home2-grid > :first-child,.globe-stage,.globe-fallback,.brand",
               ),
           )
           .flatMap((e) => {
@@ -121,6 +121,7 @@ const fs = require("node:fs");
         pages: 10,
         includes: [
           "initial pages",
+          "solid pickup card within the photographic hero",
           "calculated rate summary",
           "tracking record",
         ],
