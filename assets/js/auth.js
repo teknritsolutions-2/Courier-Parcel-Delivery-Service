@@ -36,8 +36,8 @@
       Arcway.storage.set("remember", form.elements.remember.checked);
     feedback.textContent =
       form.dataset.authForm === "signup"
-        ? "Your input is valid. No account was created: account registration requires a connected authentication service. You can explore the Customer Dashboard directly."
-        : "Your input is valid. Sign-in requires a connected authentication service. You can explore the Customer Dashboard directly.";
+        ? "Your input is valid. No account was created: account registration requires a connected authentication service."
+        : "Your input is valid. Sign-in requires a connected authentication service.";
     password.value = "";
     if (confirm) confirm.value = "";
   });
@@ -47,7 +47,7 @@
       b.addEventListener(
         "click",
         () =>
-          (feedback.textContent = `${b.dataset.provider} sign-in is not connected. No sign-in attempt was made. Explore the Customer Dashboard directly below.`),
+          (feedback.textContent = `${b.dataset.provider} sign-in is not connected. No sign-in attempt was made.`),
       ),
     );
   const dialog = document.querySelector("#forgot-dialog");
