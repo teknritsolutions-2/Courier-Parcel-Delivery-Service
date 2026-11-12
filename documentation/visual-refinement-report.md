@@ -60,3 +60,11 @@ GitHub Pages production verification is performed after publication and reported
 ### Follow-up: globe motion rendering
 
 Reproduced land patches clipping into the ocean at multiple camera longitudes. Replaced 5° land-cap curvature with 2°, raised land from 0.002 to 0.006 globe radii, and removed the duplicate depth-mask/transparent surface stack. Compared nine fixed viewpoints before/after; inspected actual drag frames in Chromium and WebKit. Both browsers passed all ten route selections, drag movement in both networks, auto-rotation, reset, and a 390px mobile view without page errors. The pale appearance is retained using opaque surfaces and lighting; the ocean is no longer literally transparent.
+
+### Follow-up: compact navigation and footer
+
+Observed the local Travel Agency & Holiday Packages project at 390px and 820px, including its right-side drawer and footer. Also inspected the phone-repair project’s responsive footer source. ARCWAY now uses a right-side native modal drawer through 1320px, with branded heading, close button, separated navigation rows, theme/direction tools and Login action. The page cannot scroll behind the open drawer; keyboard focus stays inside, Escape/backdrop/close dismiss it, and resizing resets the menu and restores desktop navigation. The existing sticky public header stays reachable at the page bottom.
+
+Tablet footers place branding above three balanced link groups. Phone footers use two link columns and a full-width account group with two columns. Link targets have 44px minimum height, the copyright area reserves space for Back to top, and the requested Concept website and Asset credits items are removed. Asset attribution remains in repository documentation.
+
+Chromium and WebKit each passed 32 shell combinations at 320, 390, 768, 820, 1024, 1180, 1320 and 1440px in light/dark and LTR/RTL, including header reachability, focus cycling, Escape/focus restoration, home submenu links, drawer tools, resize behavior and overflow checks. All seven public pages were checked for the shared drawer and footer removals. Actual phone/tablet drawer and footer screenshots were reviewed.

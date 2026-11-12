@@ -44,7 +44,7 @@ Arcway.logo = (href) =>
     header.innerHTML = `<div class="site-header"><div class="container nav-wrap">${Arcway.logo(base + "index.html")}<nav class="main-nav" id="main-nav" aria-label="Main navigation"><details class="home-nav"><summary>Home ${Arcway.icon("chevron")}</summary><div class="home-menu"><a href="${base}index.html" ${page === "home" ? 'aria-current="page"' : ""}>Home 1 — Explore</a><a href="${pages}home2.html" ${page === "home2" ? 'aria-current="page"' : ""}>Home 2 — Send</a></div></details>${links.map(([url, label, id]) => `<a href="${pages + url}" ${page === id ? 'aria-current="page"' : ""}>${label}</a>`).join("")}<a href="${pages}dashboard.html" class="mobile-dashboard">Dashboard ↗</a><div class="nav-tools"><button class="btn btn-outline" data-theme-toggle aria-label="Switch theme">${Arcway.icon("sun")} Theme</button><button class="btn btn-outline" data-direction aria-label="Switch direction">RTL</button></div></nav><div class="nav-actions"><button class="icon-btn" data-theme-toggle aria-label="Switch to dark theme">${Arcway.icon("sun")}</button><button class="icon-btn" data-direction aria-label="Switch to right-to-left layout" title="Switch reading direction">RTL</button><a class="login-link" href="${pages}login.html">Login</a><button class="icon-btn mobile-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Open navigation">${Arcway.icon("menu")}</button></div></div></div>`;
   const footer = document.querySelector("[data-footer]");
   if (footer)
-    footer.innerHTML = `<footer class="site-footer"><div class="container"><div class="footer-grid"><div>${Arcway.logo(base + "index.html")}<p>Every parcel has a path.<br>A simpler way to plan yours.</p><span class="mono footer-tagline">PRECISION IN MOTION</span></div><div><h3>EXPLORE ARCWAY</h3><a href="${base}index.html">Home 1 — Explore</a><a href="${pages}home2.html">Home 2 — Send</a><a href="${pages}services.html">Our services</a><a href="${pages}coverage.html">Delivery network</a></div><div><h3>SHIPPING TOOLS</h3><a href="${pages}rate-calculator.html">Calculate a rate</a><a href="${pages}tracking.html">Track a parcel</a><a href="${pages}dashboard.html#book">Request a pickup</a><a href="${pages}services.html#packaging">Packaging guide</a></div><div><h3>YOUR ACCOUNT</h3><a href="${pages}login.html" aria-label="Customer Login"><span class="customer-prefix">Customer </span>Login</a><a href="${pages}signup.html">Create an account</a><a href="${pages}dashboard.html">Customer Dashboard</a><a href="${pages}contact.html">Contact & support</a></div></div><div class="footer-bottom"><span>© ${new Date().getFullYear()} ARCWAY. Every parcel has a path.</span><span>Concept website · Example records. Requests stay in your browser.</span><a href="https://github.com/teknritsolutions-2/Courier-Parcel-Delivery-Service/blob/main/documentation/asset-credits.md" target="_blank" rel="noopener">Asset credits ↗</a></div></div></footer>`;
+    footer.innerHTML = `<footer class="site-footer"><div class="container"><div class="footer-grid"><div>${Arcway.logo(base + "index.html")}<p>Every parcel has a path.<br>A simpler way to plan yours.</p><span class="mono footer-tagline">PRECISION IN MOTION</span></div><div><h3>EXPLORE ARCWAY</h3><a href="${base}index.html">Home 1 — Explore</a><a href="${pages}home2.html">Home 2 — Send</a><a href="${pages}services.html">Our services</a><a href="${pages}coverage.html">Delivery network</a></div><div><h3>SHIPPING TOOLS</h3><a href="${pages}rate-calculator.html">Calculate a rate</a><a href="${pages}tracking.html">Track a parcel</a><a href="${pages}dashboard.html#book">Request a pickup</a><a href="${pages}services.html#packaging">Packaging guide</a></div><div><h3>YOUR ACCOUNT</h3><a href="${pages}login.html" aria-label="Customer Login"><span class="customer-prefix">Customer </span>Login</a><a href="${pages}signup.html">Create an account</a><a href="${pages}dashboard.html">Customer Dashboard</a><a href="${pages}contact.html">Contact & support</a></div></div><div class="footer-bottom"><span>© ${new Date().getFullYear()} ARCWAY. Every parcel has a path.</span></div></div></footer>`;
   document
     .querySelectorAll("[data-icon]")
     .forEach(
@@ -103,20 +103,78 @@ Arcway.logo = (href) =>
   sync();
   const toggle = document.querySelector(".mobile-toggle"),
     nav = document.querySelector(".main-nav");
+  const compactNav = matchMedia("(max-width: 1320px)");
+  let navDrawer;
+  if (nav && header) {
+    navDrawer = document.createElement("dialog");
+    navDrawer.className = "nav-drawer";
+    navDrawer.setAttribute("aria-label", "Main navigation");
+    navDrawer.innerHTML = `<div class="nav-drawer-head">${Arcway.logo(base + "index.html")}<button class="icon-btn" type="button" data-close-navigation aria-label="Close navigation">${Arcway.icon("close")}</button></div><div class="nav-drawer-body"><a class="btn btn-primary nav-drawer-login" href="${pages}login.html">Login ${Arcway.icon("arrow")}</a></div>`;
+    header.append(navDrawer);
+    navDrawer
+      .querySelector("[data-close-navigation]")
+      .addEventListener("click", closeMenu);
+    navDrawer.addEventListener("keydown", (event) => {
+      if (event.key !== "Tab") return;
+      const focusable = [
+        ...navDrawer.querySelectorAll('a, button, summary, [tabindex="0"]'),
+      ].filter((element) => !element.disabled && element.checkVisibility());
+      if (!focusable.length) return;
+      event.preventDefault();
+      const index = focusable.indexOf(document.activeElement);
+      const next =
+        (index + (event.shiftKey ? -1 : 1) + focusable.length) %
+        focusable.length;
+      focusable[next].focus();
+    });
+    navDrawer.addEventListener("cancel", (event) => {
+      event.preventDefault();
+      closeMenu();
+    });
+    navDrawer.addEventListener("click", (event) => {
+      if (event.target !== navDrawer) return;
+      const bounds = navDrawer.getBoundingClientRect();
+      if (
+        event.clientX < bounds.left ||
+        event.clientX > bounds.right ||
+        event.clientY < bounds.top ||
+        event.clientY > bounds.bottom
+      )
+        closeMenu();
+    });
+    nav.addEventListener("click", (event) => {
+      if (event.target.closest("a")) closeMenu();
+    });
+    function placeNavigation() {
+      closeMenu();
+      if (compactNav.matches)
+        navDrawer.querySelector(".nav-drawer-body").prepend(nav);
+      else
+        header
+          .querySelector(".nav-wrap")
+          .insertBefore(nav, header.querySelector(".nav-actions"));
+    }
+    compactNav.addEventListener("change", placeNavigation);
+    placeNavigation();
+  }
   function closeMenu() {
     nav?.classList.remove("is-open");
+    nav?.querySelectorAll("details[open]").forEach((item) => {
+      item.open = false;
+    });
+    if (navDrawer?.open) navDrawer.close();
+    document.documentElement.classList.remove("navigation-open");
     toggle?.setAttribute("aria-expanded", "false");
     toggle?.setAttribute("aria-label", "Open navigation");
-    if (toggle) toggle.innerHTML = Arcway.icon("menu");
   }
   toggle?.addEventListener("click", () => {
-    const open = toggle.getAttribute("aria-expanded") !== "true";
-    nav.classList.toggle("is-open", open);
-    toggle.setAttribute("aria-expanded", String(open));
-    toggle.setAttribute(
-      "aria-label",
-      open ? "Close navigation" : "Open navigation",
-    );
+    if (navDrawer.open) return closeMenu();
+    nav.classList.add("is-open");
+    toggle.setAttribute("aria-expanded", "true");
+    toggle.setAttribute("aria-label", "Close navigation");
+    document.documentElement.classList.add("navigation-open");
+    navDrawer.showModal();
+    navDrawer.querySelector("[data-close-navigation]").focus();
   });
   document.addEventListener("click", (e) => {
     document.querySelectorAll(".home-nav[open]").forEach((d) => {
