@@ -33,7 +33,23 @@
     backdrop = document.querySelector(".sidebar-backdrop"),
     menu = document.querySelector(".dash-menu"),
     main = document.querySelector(".dash-main-wrap");
-  const media = matchMedia("(max-width:1024px)");
+  const media = matchMedia("(max-width:1320px)");
+  const topbarTools = document.querySelector(".dash-tools");
+  const sidebarPreferences = document.querySelector(".sidebar-preferences");
+  const appearanceControls = [
+    ...topbarTools.querySelectorAll("[data-theme-toggle], [data-direction]"),
+  ];
+  function placeAppearanceControls() {
+    appearanceControls.forEach((control) => {
+      if (media.matches) sidebarPreferences.append(control);
+      else
+        topbarTools.insertBefore(
+          control,
+          document.querySelector("#profile-avatar"),
+        );
+    });
+  }
+  placeAppearanceControls();
   function closeSidebar(focus = false) {
     sidebar.classList.remove("is-open");
     backdrop.classList.remove("is-open");
@@ -56,7 +72,10 @@
     .querySelector(".dash-sidebar-close")
     .addEventListener("click", () => closeSidebar(true));
   backdrop.addEventListener("click", () => closeSidebar(true));
-  media.addEventListener("change", () => closeSidebar());
+  media.addEventListener("change", () => {
+    closeSidebar();
+    placeAppearanceControls();
+  });
   closeSidebar();
   document.addEventListener("keydown", (e) => {
     if (sidebar.classList.contains("is-open")) {

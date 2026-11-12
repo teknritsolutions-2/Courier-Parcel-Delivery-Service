@@ -72,3 +72,9 @@ Chromium and WebKit each passed 32 shell combinations at 320, 390, 768, 820, 102
 ### Follow-up: complete mobile and tablet inspection
 
 See the [responsive inspection report](responsive-inspection-report.md) for the full review, four observed usability defects and fixes, browser viewport matrix, and final verification evidence.
+
+### Follow-up: compact dashboard branding and preferences
+
+At widths through 1320px, the dashboard top bar now shows ARCWAY branding on the left and a 44px menu button at the right edge, including RTL. Theme and reading-direction controls move into the sidebar while preserving their existing state and event bindings. Desktop keeps its top-bar controls. The drawer breakpoint now includes landscape tablets; resizing closes the drawer, restores page interaction and relocates the controls correctly.
+
+Verified in Chromium and WebKit at 320, 390, 768, 820, 1024, 1180, 1280, 1320 and 1440px, in both directions: control relocation, visible branding/menu positions, theme/direction interactions, Escape/focus restoration, resize transitions, landscape scrolling and no page errors. Actual mobile/tablet header and drawer screenshots were reviewed.

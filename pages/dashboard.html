@@ -57,10 +57,13 @@
             ><span data-icon="user"></span>Profile & Settings</a
           >
         </nav>
+        <div
+          class="sidebar-preferences"
+          role="group"
+          aria-label="Appearance and reading direction"
+        ></div>
         <div class="sidebar-bottom">
-          <a href="../index.html"
-            ><span data-icon="arrow"></span> Exit</a
-          >
+          <a href="../index.html"><span data-icon="arrow"></span> Exit</a>
           <p class="sidebar-note">
             Your customer workspace.<br />Every parcel. One clear view.
           </p>
@@ -68,14 +71,9 @@
       </aside>
       <div class="dash-main-wrap">
         <header class="dash-topbar">
+          <div class="dash-mobile-brand" data-logo></div>
           <div class="topbar-label">
-            <button
-              class="icon-btn dash-menu"
-              aria-label="Open workspace navigation"
-              aria-expanded="false"
-            >
-              <span data-icon="menu"></span></button
-            ><span
+            <span
               >Workspace <span style="margin-inline: 8px">/</span>
               <strong id="topbar-section">Overview</strong></span
             >
@@ -87,7 +85,8 @@
               data-theme-toggle
               aria-label="Switch theme"
             >
-              <span data-icon="sun"></span></button
+              <span data-icon="sun"></span
+              ><span class="dash-theme-label">Theme</span></button
             ><button
               class="icon-btn"
               data-direction
@@ -101,6 +100,13 @@
               >AW</span
             >
           </div>
+          <button
+            class="icon-btn dash-menu"
+            aria-label="Open workspace navigation"
+            aria-expanded="false"
+          >
+            <span data-icon="menu"></span>
+          </button>
         </header>
         <main class="dash-content" id="main">
           <div class="dash-titlebar">
