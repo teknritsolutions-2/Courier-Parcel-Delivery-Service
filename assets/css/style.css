@@ -2588,11 +2588,11 @@ select {
   flex: 1;
 }
 @media (max-width: 1320px) {
+  .nav-actions > .login-link,
   .nav-actions > .icon-btn[data-theme-toggle],
   .nav-actions > .icon-btn[data-direction] {
     display: none;
   }
-  .nav-actions .login-link,
   .nav-actions .icon-btn {
     display: inline-flex;
     align-items: center;
