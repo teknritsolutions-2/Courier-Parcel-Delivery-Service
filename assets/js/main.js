@@ -226,6 +226,13 @@ Arcway.logo = (href) =>
   );
   const top = document.querySelector(".back-top");
   if (top) {
+    function placeBackToTop() {
+      const footerBottom = footer?.querySelector(".footer-bottom");
+      if (compactNav.matches && footerBottom) footerBottom.append(top);
+      else document.body.append(top);
+    }
+    compactNav.addEventListener("change", placeBackToTop);
+    placeBackToTop();
     const check = () => (top.hidden = window.scrollY < 450);
     window.addEventListener("scroll", check, { passive: true });
     check();

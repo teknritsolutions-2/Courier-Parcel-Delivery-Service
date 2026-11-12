@@ -1153,9 +1153,11 @@ legend {
 }
 .faq-list details {
   border-bottom: 1px solid var(--line);
-  padding: 22px 0;
 }
 .faq-list summary {
+  min-height: 70px;
+  padding: 22px 0;
+  align-items: center;
   font-weight: 500;
   cursor: pointer;
   list-style: none;
@@ -1165,6 +1167,7 @@ legend {
 }
 .faq-list summary:after {
   content: "+";
+  flex: none;
   color: var(--accent);
   font-size: 24px;
   line-height: 1;
@@ -1174,7 +1177,7 @@ legend {
 }
 .faq-list details p {
   font-size: 16px;
-  margin: 18px 0 0;
+  margin: 0 0 22px;
   max-width: 740px;
 }
 .faq-grid {
@@ -2646,5 +2649,23 @@ select {
 @media (max-width: 600px) {
   .footer-bottom {
     padding-inline-end: 54px;
+  }
+}
+
+/* Keep compact-screen back-to-top controls clear of forms and tracking events. */
+@media (max-width: 1320px) {
+  .footer-bottom {
+    flex-direction: row;
+    align-items: center;
+    padding-inline-end: 0;
+  }
+  .footer-bottom > span {
+    flex: 1;
+    min-width: 0;
+  }
+  .footer-bottom .back-top {
+    position: static;
+    flex: 0 0 44px;
+    margin-inline-start: auto;
   }
 }

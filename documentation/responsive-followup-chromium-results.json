@@ -1,0 +1,127 @@
+{
+  "engine": "chromium",
+  "checks": [
+    {
+      "width": 320,
+      "height": 568,
+      "theme": "light",
+      "dir": "ltr"
+    },
+    {
+      "width": 320,
+      "height": 568,
+      "theme": "light",
+      "dir": "rtl"
+    },
+    {
+      "width": 320,
+      "height": 568,
+      "theme": "dark",
+      "dir": "ltr"
+    },
+    {
+      "width": 320,
+      "height": 568,
+      "theme": "dark",
+      "dir": "rtl"
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "theme": "light",
+      "dir": "ltr"
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "theme": "light",
+      "dir": "rtl"
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "theme": "dark",
+      "dir": "ltr"
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "theme": "dark",
+      "dir": "rtl"
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "theme": "light",
+      "dir": "ltr"
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "theme": "light",
+      "dir": "rtl"
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "theme": "dark",
+      "dir": "ltr"
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "theme": "dark",
+      "dir": "rtl"
+    },
+    {
+      "width": 820,
+      "height": 1180,
+      "theme": "light",
+      "dir": "ltr"
+    },
+    {
+      "width": 820,
+      "height": 1180,
+      "theme": "light",
+      "dir": "rtl"
+    },
+    {
+      "width": 820,
+      "height": 1180,
+      "theme": "dark",
+      "dir": "ltr"
+    },
+    {
+      "width": 820,
+      "height": 1180,
+      "theme": "dark",
+      "dir": "rtl"
+    },
+    {
+      "width": 1180,
+      "height": 820,
+      "theme": "light",
+      "dir": "ltr"
+    },
+    {
+      "width": 1180,
+      "height": 820,
+      "theme": "light",
+      "dir": "rtl"
+    },
+    {
+      "width": 1180,
+      "height": 820,
+      "theme": "dark",
+      "dir": "ltr"
+    },
+    {
+      "width": 1180,
+      "height": 820,
+      "theme": "dark",
+      "dir": "rtl"
+    }
+  ],
+  "errors": [],
+  "summary": "FAQ full-row touch activation; public drawer short-screen reachability; 44px dashboard close control; landscape sidebar Exit reachability; Escape and focus return; populated mobile/tablet calculator and tracking results; footer-docked back-to-top control returns to page top"
+}

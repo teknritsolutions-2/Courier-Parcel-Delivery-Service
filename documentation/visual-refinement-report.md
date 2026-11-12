@@ -68,3 +68,7 @@ Observed the local Travel Agency & Holiday Packages project at 390px and 820px, 
 Tablet footers place branding above three balanced link groups. Phone footers use two link columns and a full-width account group with two columns. Link targets have 44px minimum height, the copyright area reserves space for Back to top, and the requested Concept website and Asset credits items are removed. Asset attribution remains in repository documentation.
 
 Chromium and WebKit each passed 32 shell combinations at 320, 390, 768, 820, 1024, 1180, 1320 and 1440px in light/dark and LTR/RTL, including header reachability, focus cycling, Escape/focus restoration, home submenu links, drawer tools, resize behavior and overflow checks. All seven public pages were checked for the shared drawer and footer removals. Actual phone/tablet drawer and footer screenshots were reviewed.
+
+### Follow-up: complete mobile and tablet inspection
+
+See the [responsive inspection report](responsive-inspection-report.md) for the full review, four observed usability defects and fixes, browser viewport matrix, and final verification evidence.
