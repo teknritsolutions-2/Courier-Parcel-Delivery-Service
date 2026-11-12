@@ -285,14 +285,25 @@ p {
   white-space: nowrap;
   font-size: 26px;
   font-weight: 800;
-  letter-spacing: -1.2px;
+  letter-spacing: -0.9px;
+  line-height: 1;
+}
+.brand-wordmark {
+  display: inline-block;
 }
 .brand-symbol {
   width: 36px;
   height: 39px;
+  flex: 0 0 auto;
+  color: inherit;
+  overflow: visible;
+}
+.brand-route {
   fill: none;
   stroke: var(--accent);
-  stroke-width: 3.4;
+  stroke-width: 3.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 .main-nav {
   display: flex;

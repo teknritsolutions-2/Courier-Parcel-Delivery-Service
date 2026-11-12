@@ -27,7 +27,7 @@ Arcway.icons = {
 Arcway.icon = (name, cls = "") =>
   `<svg class="icon ${cls}" viewBox="0 0 24 24" aria-hidden="true">${Arcway.icons[name] || Arcway.icons.box}</svg>`;
 Arcway.logo = (href) =>
-  `<a class="brand" href="${href}" aria-label="ARCWAY home"><svg class="brand-symbol" viewBox="0 0 40 44" aria-hidden="true"><path d="M5 36 20 7l15 29M12 24h15M5 36h10c11 0 20-8 20-19"/><path d="m29 18 6-2 2 6"/></svg><span>ARCWAY<span class="accent">.</span></span></a>`;
+  `<a class="brand" href="${href}" aria-label="ARCWAY home"><svg class="brand-symbol" viewBox="0 0 44 44" aria-hidden="true"><path fill="currentColor" d="M3 37 17.5 7h7L39 37h-8.5L21 16.5 11.5 37Z"/><path class="brand-route" d="M8 30h12c8 0 14-4 18-11m-8 0h8v8"/></svg><span class="brand-wordmark">ARCWAY<span class="accent">.</span></span></a>`;
 (() => {
   const page = document.body.dataset.page,
     base = page === "home" ? "" : "../",
