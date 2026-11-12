@@ -78,3 +78,7 @@ See the [responsive inspection report](responsive-inspection-report.md) for the 
 At widths through 1320px, the dashboard top bar now shows ARCWAY branding on the left and a 44px menu button at the right edge, including RTL. Theme and reading-direction controls move into the sidebar while preserving their existing state and event bindings. Desktop keeps its top-bar controls. The drawer breakpoint now includes landscape tablets; resizing closes the drawer, restores page interaction and relocates the controls correctly.
 
 Verified in Chromium and WebKit at 320, 390, 768, 820, 1024, 1180, 1280, 1320 and 1440px, in both directions: control relocation, visible branding/menu positions, theme/direction interactions, Escape/focus restoration, resize transitions, landscape scrolling and no page errors. Actual mobile/tablet header and drawer screenshots were reviewed.
+
+### Follow-up: readable dropdowns throughout the site
+
+See the [dropdown inspection report](dropdown-inspection-report.md) for the shared 16px/48px option controls, anchored viewport positioning, keyboard/form behavior and Chromium/WebKit verification evidence.

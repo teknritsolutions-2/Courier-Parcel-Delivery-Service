@@ -1,0 +1,1188 @@
+{
+  "engine": "webkit",
+  "menus": 196,
+  "checks": [
+    {
+      "width": 320,
+      "mode": "light-ltr",
+      "context": "index",
+      "control": 0
+    },
+    {
+      "width": 320,
+      "mode": "light-ltr",
+      "context": "index",
+      "control": 1
+    },
+    {
+      "width": 320,
+      "mode": "light-ltr",
+      "context": "index",
+      "control": 2
+    },
+    {
+      "width": 320,
+      "mode": "light-ltr",
+      "context": "index",
+      "control": 3
+    },
+    {
+      "width": 320,
+      "mode": "light-ltr",
+      "context": "home2",
+      "control": 0
+    },
+    {
+      "width": 320,
+      "mode": "light-ltr",
+      "context": "home2",
+      "control": 1
+    },
+    {
+      "width": 320,
+      "mode": "light-ltr",
+      "context": "home2",
+      "control": 2
+    },
+    {
+      "width": 320,
+      "mode": "light-ltr",
+      "context": "home2",
+      "control": 3
+    },
+    {
+      "width": 320,
+      "mode": "light-ltr",
+      "context": "home2",
+      "control": 4
+    },
+    {
+      "width": 320,
+      "mode": "light-ltr",
+      "context": "rate-calculator",
+      "control": 0
+    },
+    {
+      "width": 320,
+      "mode": "light-ltr",
+      "context": "rate-calculator",
+      "control": 1
+    },
+    {
+      "width": 320,
+      "mode": "light-ltr",
+      "context": "rate-calculator",
+      "control": 2
+    },
+    {
+      "width": 320,
+      "mode": "light-ltr",
+      "context": "rate-calculator",
+      "control": 3
+    },
+    {
+      "width": 320,
+      "mode": "light-ltr",
+      "context": "rate-calculator",
+      "control": 4
+    },
+    {
+      "width": 320,
+      "mode": "light-ltr",
+      "context": "coverage",
+      "control": 0
+    },
+    {
+      "width": 320,
+      "mode": "light-ltr",
+      "context": "contact",
+      "control": 0
+    },
+    {
+      "width": 320,
+      "mode": "light-ltr",
+      "context": "dashboard#book",
+      "control": 0
+    },
+    {
+      "width": 320,
+      "mode": "light-ltr",
+      "context": "dashboard#book",
+      "control": 1
+    },
+    {
+      "width": 320,
+      "mode": "light-ltr",
+      "context": "dashboard#book",
+      "control": 2
+    },
+    {
+      "width": 320,
+      "mode": "light-ltr",
+      "context": "dashboard#book",
+      "control": 3
+    },
+    {
+      "width": 320,
+      "mode": "light-ltr",
+      "context": "dashboard#book",
+      "control": 4
+    },
+    {
+      "width": 320,
+      "mode": "light-ltr",
+      "context": "dashboard#track",
+      "control": 0
+    },
+    {
+      "width": 320,
+      "mode": "light-ltr",
+      "context": "dashboard#track",
+      "control": 1
+    },
+    {
+      "width": 320,
+      "mode": "light-ltr",
+      "context": "dashboard#history",
+      "control": 0
+    },
+    {
+      "width": 320,
+      "mode": "light-ltr",
+      "context": "dashboard#history",
+      "control": 1
+    },
+    {
+      "width": 320,
+      "mode": "dark-rtl",
+      "context": "index",
+      "control": 0
+    },
+    {
+      "width": 320,
+      "mode": "dark-rtl",
+      "context": "index",
+      "control": 1
+    },
+    {
+      "width": 320,
+      "mode": "dark-rtl",
+      "context": "index",
+      "control": 2
+    },
+    {
+      "width": 320,
+      "mode": "dark-rtl",
+      "context": "index",
+      "control": 3
+    },
+    {
+      "width": 320,
+      "mode": "dark-rtl",
+      "context": "home2",
+      "control": 0
+    },
+    {
+      "width": 320,
+      "mode": "dark-rtl",
+      "context": "home2",
+      "control": 1
+    },
+    {
+      "width": 320,
+      "mode": "dark-rtl",
+      "context": "home2",
+      "control": 2
+    },
+    {
+      "width": 320,
+      "mode": "dark-rtl",
+      "context": "home2",
+      "control": 3
+    },
+    {
+      "width": 320,
+      "mode": "dark-rtl",
+      "context": "home2",
+      "control": 4
+    },
+    {
+      "width": 320,
+      "mode": "dark-rtl",
+      "context": "rate-calculator",
+      "control": 0
+    },
+    {
+      "width": 320,
+      "mode": "dark-rtl",
+      "context": "rate-calculator",
+      "control": 1
+    },
+    {
+      "width": 320,
+      "mode": "dark-rtl",
+      "context": "rate-calculator",
+      "control": 2
+    },
+    {
+      "width": 320,
+      "mode": "dark-rtl",
+      "context": "rate-calculator",
+      "control": 3
+    },
+    {
+      "width": 320,
+      "mode": "dark-rtl",
+      "context": "rate-calculator",
+      "control": 4
+    },
+    {
+      "width": 320,
+      "mode": "dark-rtl",
+      "context": "coverage",
+      "control": 0
+    },
+    {
+      "width": 320,
+      "mode": "dark-rtl",
+      "context": "contact",
+      "control": 0
+    },
+    {
+      "width": 320,
+      "mode": "dark-rtl",
+      "context": "dashboard#book",
+      "control": 0
+    },
+    {
+      "width": 320,
+      "mode": "dark-rtl",
+      "context": "dashboard#book",
+      "control": 1
+    },
+    {
+      "width": 320,
+      "mode": "dark-rtl",
+      "context": "dashboard#book",
+      "control": 2
+    },
+    {
+      "width": 320,
+      "mode": "dark-rtl",
+      "context": "dashboard#book",
+      "control": 3
+    },
+    {
+      "width": 320,
+      "mode": "dark-rtl",
+      "context": "dashboard#book",
+      "control": 4
+    },
+    {
+      "width": 320,
+      "mode": "dark-rtl",
+      "context": "dashboard#track",
+      "control": 0
+    },
+    {
+      "width": 320,
+      "mode": "dark-rtl",
+      "context": "dashboard#track",
+      "control": 1
+    },
+    {
+      "width": 320,
+      "mode": "dark-rtl",
+      "context": "dashboard#history",
+      "control": 0
+    },
+    {
+      "width": 320,
+      "mode": "dark-rtl",
+      "context": "dashboard#history",
+      "control": 1
+    },
+    {
+      "width": 390,
+      "mode": "light-ltr",
+      "context": "index",
+      "control": 0
+    },
+    {
+      "width": 390,
+      "mode": "light-ltr",
+      "context": "index",
+      "control": 1
+    },
+    {
+      "width": 390,
+      "mode": "light-ltr",
+      "context": "index",
+      "control": 2
+    },
+    {
+      "width": 390,
+      "mode": "light-ltr",
+      "context": "index",
+      "control": 3
+    },
+    {
+      "width": 390,
+      "mode": "light-ltr",
+      "context": "home2",
+      "control": 0
+    },
+    {
+      "width": 390,
+      "mode": "light-ltr",
+      "context": "home2",
+      "control": 1
+    },
+    {
+      "width": 390,
+      "mode": "light-ltr",
+      "context": "home2",
+      "control": 2
+    },
+    {
+      "width": 390,
+      "mode": "light-ltr",
+      "context": "home2",
+      "control": 3
+    },
+    {
+      "width": 390,
+      "mode": "light-ltr",
+      "context": "home2",
+      "control": 4
+    },
+    {
+      "width": 390,
+      "mode": "light-ltr",
+      "context": "rate-calculator",
+      "control": 0
+    },
+    {
+      "width": 390,
+      "mode": "light-ltr",
+      "context": "rate-calculator",
+      "control": 1
+    },
+    {
+      "width": 390,
+      "mode": "light-ltr",
+      "context": "rate-calculator",
+      "control": 2
+    },
+    {
+      "width": 390,
+      "mode": "light-ltr",
+      "context": "rate-calculator",
+      "control": 3
+    },
+    {
+      "width": 390,
+      "mode": "light-ltr",
+      "context": "rate-calculator",
+      "control": 4
+    },
+    {
+      "width": 390,
+      "mode": "light-ltr",
+      "context": "coverage",
+      "control": 0
+    },
+    {
+      "width": 390,
+      "mode": "light-ltr",
+      "context": "contact",
+      "control": 0
+    },
+    {
+      "width": 390,
+      "mode": "light-ltr",
+      "context": "dashboard#book",
+      "control": 0
+    },
+    {
+      "width": 390,
+      "mode": "light-ltr",
+      "context": "dashboard#book",
+      "control": 1
+    },
+    {
+      "width": 390,
+      "mode": "light-ltr",
+      "context": "dashboard#book",
+      "control": 2
+    },
+    {
+      "width": 390,
+      "mode": "light-ltr",
+      "context": "dashboard#book",
+      "control": 3
+    },
+    {
+      "width": 390,
+      "mode": "light-ltr",
+      "context": "dashboard#book",
+      "control": 4
+    },
+    {
+      "width": 390,
+      "mode": "light-ltr",
+      "context": "dashboard#track",
+      "control": 0
+    },
+    {
+      "width": 390,
+      "mode": "light-ltr",
+      "context": "dashboard#track",
+      "control": 1
+    },
+    {
+      "width": 390,
+      "mode": "light-ltr",
+      "context": "dashboard#history",
+      "control": 0
+    },
+    {
+      "width": 390,
+      "mode": "light-ltr",
+      "context": "dashboard#history",
+      "control": 1
+    },
+    {
+      "width": 390,
+      "mode": "dark-rtl",
+      "context": "index",
+      "control": 0
+    },
+    {
+      "width": 390,
+      "mode": "dark-rtl",
+      "context": "index",
+      "control": 1
+    },
+    {
+      "width": 390,
+      "mode": "dark-rtl",
+      "context": "index",
+      "control": 2
+    },
+    {
+      "width": 390,
+      "mode": "dark-rtl",
+      "context": "index",
+      "control": 3
+    },
+    {
+      "width": 390,
+      "mode": "dark-rtl",
+      "context": "home2",
+      "control": 0
+    },
+    {
+      "width": 390,
+      "mode": "dark-rtl",
+      "context": "home2",
+      "control": 1
+    },
+    {
+      "width": 390,
+      "mode": "dark-rtl",
+      "context": "home2",
+      "control": 2
+    },
+    {
+      "width": 390,
+      "mode": "dark-rtl",
+      "context": "home2",
+      "control": 3
+    },
+    {
+      "width": 390,
+      "mode": "dark-rtl",
+      "context": "home2",
+      "control": 4
+    },
+    {
+      "width": 390,
+      "mode": "dark-rtl",
+      "context": "rate-calculator",
+      "control": 0
+    },
+    {
+      "width": 390,
+      "mode": "dark-rtl",
+      "context": "rate-calculator",
+      "control": 1
+    },
+    {
+      "width": 390,
+      "mode": "dark-rtl",
+      "context": "rate-calculator",
+      "control": 2
+    },
+    {
+      "width": 390,
+      "mode": "dark-rtl",
+      "context": "rate-calculator",
+      "control": 3
+    },
+    {
+      "width": 390,
+      "mode": "dark-rtl",
+      "context": "rate-calculator",
+      "control": 4
+    },
+    {
+      "width": 390,
+      "mode": "dark-rtl",
+      "context": "coverage",
+      "control": 0
+    },
+    {
+      "width": 390,
+      "mode": "dark-rtl",
+      "context": "contact",
+      "control": 0
+    },
+    {
+      "width": 390,
+      "mode": "dark-rtl",
+      "context": "dashboard#book",
+      "control": 0
+    },
+    {
+      "width": 390,
+      "mode": "dark-rtl",
+      "context": "dashboard#book",
+      "control": 1
+    },
+    {
+      "width": 390,
+      "mode": "dark-rtl",
+      "context": "dashboard#book",
+      "control": 2
+    },
+    {
+      "width": 390,
+      "mode": "dark-rtl",
+      "context": "dashboard#book",
+      "control": 3
+    },
+    {
+      "width": 390,
+      "mode": "dark-rtl",
+      "context": "dashboard#book",
+      "control": 4
+    },
+    {
+      "width": 390,
+      "mode": "dark-rtl",
+      "context": "dashboard#track",
+      "control": 0
+    },
+    {
+      "width": 390,
+      "mode": "dark-rtl",
+      "context": "dashboard#track",
+      "control": 1
+    },
+    {
+      "width": 390,
+      "mode": "dark-rtl",
+      "context": "dashboard#history",
+      "control": 0
+    },
+    {
+      "width": 390,
+      "mode": "dark-rtl",
+      "context": "dashboard#history",
+      "control": 1
+    },
+    {
+      "width": 820,
+      "mode": "light-ltr",
+      "context": "index",
+      "control": 0
+    },
+    {
+      "width": 820,
+      "mode": "light-ltr",
+      "context": "index",
+      "control": 1
+    },
+    {
+      "width": 820,
+      "mode": "light-ltr",
+      "context": "index",
+      "control": 2
+    },
+    {
+      "width": 820,
+      "mode": "light-ltr",
+      "context": "home2",
+      "control": 0
+    },
+    {
+      "width": 820,
+      "mode": "light-ltr",
+      "context": "home2",
+      "control": 1
+    },
+    {
+      "width": 820,
+      "mode": "light-ltr",
+      "context": "home2",
+      "control": 2
+    },
+    {
+      "width": 820,
+      "mode": "light-ltr",
+      "context": "home2",
+      "control": 3
+    },
+    {
+      "width": 820,
+      "mode": "light-ltr",
+      "context": "home2",
+      "control": 4
+    },
+    {
+      "width": 820,
+      "mode": "light-ltr",
+      "context": "rate-calculator",
+      "control": 0
+    },
+    {
+      "width": 820,
+      "mode": "light-ltr",
+      "context": "rate-calculator",
+      "control": 1
+    },
+    {
+      "width": 820,
+      "mode": "light-ltr",
+      "context": "rate-calculator",
+      "control": 2
+    },
+    {
+      "width": 820,
+      "mode": "light-ltr",
+      "context": "rate-calculator",
+      "control": 3
+    },
+    {
+      "width": 820,
+      "mode": "light-ltr",
+      "context": "rate-calculator",
+      "control": 4
+    },
+    {
+      "width": 820,
+      "mode": "light-ltr",
+      "context": "coverage",
+      "control": 0
+    },
+    {
+      "width": 820,
+      "mode": "light-ltr",
+      "context": "contact",
+      "control": 0
+    },
+    {
+      "width": 820,
+      "mode": "light-ltr",
+      "context": "dashboard#book",
+      "control": 0
+    },
+    {
+      "width": 820,
+      "mode": "light-ltr",
+      "context": "dashboard#book",
+      "control": 1
+    },
+    {
+      "width": 820,
+      "mode": "light-ltr",
+      "context": "dashboard#book",
+      "control": 2
+    },
+    {
+      "width": 820,
+      "mode": "light-ltr",
+      "context": "dashboard#book",
+      "control": 3
+    },
+    {
+      "width": 820,
+      "mode": "light-ltr",
+      "context": "dashboard#book",
+      "control": 4
+    },
+    {
+      "width": 820,
+      "mode": "light-ltr",
+      "context": "dashboard#track",
+      "control": 0
+    },
+    {
+      "width": 820,
+      "mode": "light-ltr",
+      "context": "dashboard#track",
+      "control": 1
+    },
+    {
+      "width": 820,
+      "mode": "light-ltr",
+      "context": "dashboard#history",
+      "control": 0
+    },
+    {
+      "width": 820,
+      "mode": "light-ltr",
+      "context": "dashboard#history",
+      "control": 1
+    },
+    {
+      "width": 820,
+      "mode": "dark-rtl",
+      "context": "index",
+      "control": 0
+    },
+    {
+      "width": 820,
+      "mode": "dark-rtl",
+      "context": "index",
+      "control": 1
+    },
+    {
+      "width": 820,
+      "mode": "dark-rtl",
+      "context": "index",
+      "control": 2
+    },
+    {
+      "width": 820,
+      "mode": "dark-rtl",
+      "context": "home2",
+      "control": 0
+    },
+    {
+      "width": 820,
+      "mode": "dark-rtl",
+      "context": "home2",
+      "control": 1
+    },
+    {
+      "width": 820,
+      "mode": "dark-rtl",
+      "context": "home2",
+      "control": 2
+    },
+    {
+      "width": 820,
+      "mode": "dark-rtl",
+      "context": "home2",
+      "control": 3
+    },
+    {
+      "width": 820,
+      "mode": "dark-rtl",
+      "context": "home2",
+      "control": 4
+    },
+    {
+      "width": 820,
+      "mode": "dark-rtl",
+      "context": "rate-calculator",
+      "control": 0
+    },
+    {
+      "width": 820,
+      "mode": "dark-rtl",
+      "context": "rate-calculator",
+      "control": 1
+    },
+    {
+      "width": 820,
+      "mode": "dark-rtl",
+      "context": "rate-calculator",
+      "control": 2
+    },
+    {
+      "width": 820,
+      "mode": "dark-rtl",
+      "context": "rate-calculator",
+      "control": 3
+    },
+    {
+      "width": 820,
+      "mode": "dark-rtl",
+      "context": "rate-calculator",
+      "control": 4
+    },
+    {
+      "width": 820,
+      "mode": "dark-rtl",
+      "context": "coverage",
+      "control": 0
+    },
+    {
+      "width": 820,
+      "mode": "dark-rtl",
+      "context": "contact",
+      "control": 0
+    },
+    {
+      "width": 820,
+      "mode": "dark-rtl",
+      "context": "dashboard#book",
+      "control": 0
+    },
+    {
+      "width": 820,
+      "mode": "dark-rtl",
+      "context": "dashboard#book",
+      "control": 1
+    },
+    {
+      "width": 820,
+      "mode": "dark-rtl",
+      "context": "dashboard#book",
+      "control": 2
+    },
+    {
+      "width": 820,
+      "mode": "dark-rtl",
+      "context": "dashboard#book",
+      "control": 3
+    },
+    {
+      "width": 820,
+      "mode": "dark-rtl",
+      "context": "dashboard#book",
+      "control": 4
+    },
+    {
+      "width": 820,
+      "mode": "dark-rtl",
+      "context": "dashboard#track",
+      "control": 0
+    },
+    {
+      "width": 820,
+      "mode": "dark-rtl",
+      "context": "dashboard#track",
+      "control": 1
+    },
+    {
+      "width": 820,
+      "mode": "dark-rtl",
+      "context": "dashboard#history",
+      "control": 0
+    },
+    {
+      "width": 820,
+      "mode": "dark-rtl",
+      "context": "dashboard#history",
+      "control": 1
+    },
+    {
+      "width": 1180,
+      "mode": "light-ltr",
+      "context": "index",
+      "control": 0
+    },
+    {
+      "width": 1180,
+      "mode": "light-ltr",
+      "context": "index",
+      "control": 1
+    },
+    {
+      "width": 1180,
+      "mode": "light-ltr",
+      "context": "index",
+      "control": 2
+    },
+    {
+      "width": 1180,
+      "mode": "light-ltr",
+      "context": "home2",
+      "control": 0
+    },
+    {
+      "width": 1180,
+      "mode": "light-ltr",
+      "context": "home2",
+      "control": 1
+    },
+    {
+      "width": 1180,
+      "mode": "light-ltr",
+      "context": "home2",
+      "control": 2
+    },
+    {
+      "width": 1180,
+      "mode": "light-ltr",
+      "context": "home2",
+      "control": 3
+    },
+    {
+      "width": 1180,
+      "mode": "light-ltr",
+      "context": "home2",
+      "control": 4
+    },
+    {
+      "width": 1180,
+      "mode": "light-ltr",
+      "context": "rate-calculator",
+      "control": 0
+    },
+    {
+      "width": 1180,
+      "mode": "light-ltr",
+      "context": "rate-calculator",
+      "control": 1
+    },
+    {
+      "width": 1180,
+      "mode": "light-ltr",
+      "context": "rate-calculator",
+      "control": 2
+    },
+    {
+      "width": 1180,
+      "mode": "light-ltr",
+      "context": "rate-calculator",
+      "control": 3
+    },
+    {
+      "width": 1180,
+      "mode": "light-ltr",
+      "context": "rate-calculator",
+      "control": 4
+    },
+    {
+      "width": 1180,
+      "mode": "light-ltr",
+      "context": "coverage",
+      "control": 0
+    },
+    {
+      "width": 1180,
+      "mode": "light-ltr",
+      "context": "contact",
+      "control": 0
+    },
+    {
+      "width": 1180,
+      "mode": "light-ltr",
+      "context": "dashboard#book",
+      "control": 0
+    },
+    {
+      "width": 1180,
+      "mode": "light-ltr",
+      "context": "dashboard#book",
+      "control": 1
+    },
+    {
+      "width": 1180,
+      "mode": "light-ltr",
+      "context": "dashboard#book",
+      "control": 2
+    },
+    {
+      "width": 1180,
+      "mode": "light-ltr",
+      "context": "dashboard#book",
+      "control": 3
+    },
+    {
+      "width": 1180,
+      "mode": "light-ltr",
+      "context": "dashboard#book",
+      "control": 4
+    },
+    {
+      "width": 1180,
+      "mode": "light-ltr",
+      "context": "dashboard#track",
+      "control": 0
+    },
+    {
+      "width": 1180,
+      "mode": "light-ltr",
+      "context": "dashboard#track",
+      "control": 1
+    },
+    {
+      "width": 1180,
+      "mode": "light-ltr",
+      "context": "dashboard#history",
+      "control": 0
+    },
+    {
+      "width": 1180,
+      "mode": "light-ltr",
+      "context": "dashboard#history",
+      "control": 1
+    },
+    {
+      "width": 1180,
+      "mode": "dark-rtl",
+      "context": "index",
+      "control": 0
+    },
+    {
+      "width": 1180,
+      "mode": "dark-rtl",
+      "context": "index",
+      "control": 1
+    },
+    {
+      "width": 1180,
+      "mode": "dark-rtl",
+      "context": "index",
+      "control": 2
+    },
+    {
+      "width": 1180,
+      "mode": "dark-rtl",
+      "context": "home2",
+      "control": 0
+    },
+    {
+      "width": 1180,
+      "mode": "dark-rtl",
+      "context": "home2",
+      "control": 1
+    },
+    {
+      "width": 1180,
+      "mode": "dark-rtl",
+      "context": "home2",
+      "control": 2
+    },
+    {
+      "width": 1180,
+      "mode": "dark-rtl",
+      "context": "home2",
+      "control": 3
+    },
+    {
+      "width": 1180,
+      "mode": "dark-rtl",
+      "context": "home2",
+      "control": 4
+    },
+    {
+      "width": 1180,
+      "mode": "dark-rtl",
+      "context": "rate-calculator",
+      "control": 0
+    },
+    {
+      "width": 1180,
+      "mode": "dark-rtl",
+      "context": "rate-calculator",
+      "control": 1
+    },
+    {
+      "width": 1180,
+      "mode": "dark-rtl",
+      "context": "rate-calculator",
+      "control": 2
+    },
+    {
+      "width": 1180,
+      "mode": "dark-rtl",
+      "context": "rate-calculator",
+      "control": 3
+    },
+    {
+      "width": 1180,
+      "mode": "dark-rtl",
+      "context": "rate-calculator",
+      "control": 4
+    },
+    {
+      "width": 1180,
+      "mode": "dark-rtl",
+      "context": "coverage",
+      "control": 0
+    },
+    {
+      "width": 1180,
+      "mode": "dark-rtl",
+      "context": "contact",
+      "control": 0
+    },
+    {
+      "width": 1180,
+      "mode": "dark-rtl",
+      "context": "dashboard#book",
+      "control": 0
+    },
+    {
+      "width": 1180,
+      "mode": "dark-rtl",
+      "context": "dashboard#book",
+      "control": 1
+    },
+    {
+      "width": 1180,
+      "mode": "dark-rtl",
+      "context": "dashboard#book",
+      "control": 2
+    },
+    {
+      "width": 1180,
+      "mode": "dark-rtl",
+      "context": "dashboard#book",
+      "control": 3
+    },
+    {
+      "width": 1180,
+      "mode": "dark-rtl",
+      "context": "dashboard#book",
+      "control": 4
+    },
+    {
+      "width": 1180,
+      "mode": "dark-rtl",
+      "context": "dashboard#track",
+      "control": 0
+    },
+    {
+      "width": 1180,
+      "mode": "dark-rtl",
+      "context": "dashboard#track",
+      "control": 1
+    },
+    {
+      "width": 1180,
+      "mode": "dark-rtl",
+      "context": "dashboard#history",
+      "control": 0
+    },
+    {
+      "width": 1180,
+      "mode": "dark-rtl",
+      "context": "dashboard#history",
+      "control": 1
+    }
+  ],
+  "errors": [],
+  "additional": [
+    "keyboard arrows/Home/End, typeahead, Enter, Escape, Tab",
+    "form serialization, validation, reset, disabled/dynamic options",
+    "international globe city replacement and selection"
+  ]
+}
